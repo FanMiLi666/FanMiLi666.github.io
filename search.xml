@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>代码演示</title>
+      <link href="/2022/08/05/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/"/>
+      <url>/2022/08/05/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello world&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello Word</title>
+      <link href="/2022/06/05/hello-world/"/>
+      <url>/2022/06/05/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据库概述</title>
+      <link href="/2022/05/05/%E7%AC%AC01%E8%8A%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/"/>
+      <url>/2022/05/05/%E7%AC%AC01%E8%8A%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="数据库的基本概念"><a href="#数据库的基本概念" class="headerlink" title="数据库的基本概念"></a>数据库的基本概念</h3><p>数据库用来存储应用程序中的数据：比如电商网站，商品信息，用户信息，都是应该持久化存储的，不能像一个变量一个，放在内存中， 服务器重启就消失了，所以需要将数据存储在数据库中，达到持久化存储的目的。</p><h3 id="常用的关系型数据库"><a href="#常用的关系型数据库" class="headerlink" title="常用的关系型数据库"></a>常用的关系型数据库</h3><ol><li>MySQL：开源免费。</li><li>Oracle：大型系统（银行系统、ERP系统、医院系统等，Java体系）</li><li>sql server：基于windows server服务器中使用，c# .net体系</li></ol><h3 id="存储数据的方式"><a href="#存储数据的方式" class="headerlink" title="存储数据的方式"></a>存储数据的方式</h3><p>二维表，像是一个个excel文件。</p><h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h3 id="一、下载mysql"><a href="#一、下载mysql" class="headerlink" title="一、下载mysql"></a>一、下载mysql</h3><p>这里推荐下载mysql5.7.23版本：<a href="https://downloads.mysql.com/archives/community/">下载地址</a></p><h3 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h3><ol><li><p>将下载后的压缩包解压到本地，例如c盘根目录。C:\mysql-5.7.23-winx64</p></li><li><p>在mysql目录中创建一个空的data目录和一个mysql.ini文件</p><p>ini文件内容如下</p> <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysql]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8 </span><br><span class="line"></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置3306端口</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="attr">basedir</span>=F:\mysql\mysql-<span class="number">5.7</span>.<span class="number">24</span>-winx64\mysql-<span class="number">5.7</span>.<span class="number">24</span>-winx64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="attr">datadir</span>=F:\mysql\mysql-<span class="number">5.7</span>.<span class="number">24</span>-winx64\mysql-<span class="number">5.7</span>.<span class="number">24</span>-winx64\data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br></pre></td></tr></table></figure></li><li><p>配置环境变量，将mysql&#x2F;bin目录加到path中。</p></li><li><p>执行命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize-insecure --user=mysql</span><br><span class="line">mysqld install <span class="comment">#创建服务，需要以管理员的权限打开命令行工具</span></span><br><span class="line">net start mysql <span class="comment">#启动服务</span></span><br></pre></td></tr></table></figure></li><li><p>链接mysql</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></li><li><p>修改密码</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p password</span><br><span class="line"><span class="comment"># 先输入旧密码，默认为空，直接回车即可，然后输入两次新密码。</span></span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
