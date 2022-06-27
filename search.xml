@@ -11,6 +11,43 @@
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
       
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo 博客添加 Live2d 小人</title>
+      <link href="/2022/06/05/Hexo%20%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%20Live2d%20%E5%B0%8F%E4%BA%BA/"/>
+      <url>/2022/06/05/Hexo%20%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%20Live2d%20%E5%B0%8F%E4%BA%BA/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Hexo-博客添加-Live2d-小人"><a href="#Hexo-博客添加-Live2d-小人" class="headerlink" title="Hexo 博客添加 Live2d 小人"></a>Hexo 博客添加 Live2d 小人</h1><h3 id="一、安装hexo-helper-live2d插件"><a href="#一、安装hexo-helper-live2d插件" class="headerlink" title="一、安装hexo-helper-live2d插件"></a>一、安装hexo-helper-live2d插件</h3><p>**现在假设你已经又一个使用<code>hexo</code>搭建的博客，然后我们安装<a href="https://github.com/EYHN/hexo-helper-live2d">hexo-helper-live2d</a>模块</p><p><a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md">hexo-helper-live2d官方中文文档</a></p><blockquote><p>npm install –save hexo-helper-live2d</p></blockquote><h3 id="二、添加配置文件"><a href="#二、添加配置文件" class="headerlink" title="二、添加配置文件"></a>二、添加配置文件</h3><p>在<code>hexo</code>博客到<code>_config.yml</code>文件添加以下配置 建议在根目录下的<code>_config.yml</code>配置，这样以后换了主题就不用重新配置了 当然也可以在<code>themes</code>下的<code>_config.yml</code>配置但是要注意模型目录要填写正确</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">   enable: true  # 是否启动</span><br><span class="line">   scriptFrom: local # 默认</span><br><span class="line">   pluginRootPath: live2dw/  # 插件在站点上的根目录(相对路径)</span><br><span class="line">   pluginJsPath: lib/  # 脚本文件相对与插件根目录路径</span><br><span class="line">   pluginModelPath: assets/  # 模型文件相对与插件根目录路径</span><br><span class="line">   tagMode: false  # 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span><br><span class="line">   debug: false  # 调试, 是否在控制台输出日志</span><br><span class="line">   model:</span><br><span class="line">     use: live2d-widget  ## 模型文件</span><br><span class="line">   display:</span><br><span class="line">     position: right # 定位方向 left right top bottom</span><br><span class="line">     width: 150  # 小人宽度</span><br><span class="line">     height: 300 #  小人高度</span><br><span class="line">     hOffset: -15  # 向</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
       
     </entry>
     
@@ -24,6 +61,43 @@
         <content type="html"><![CDATA[<h3 id="数据库的基本概念"><a href="#数据库的基本概念" class="headerlink" title="数据库的基本概念"></a>数据库的基本概念</h3><p>数据库用来存储应用程序中的数据：比如电商网站，商品信息，用户信息，都是应该持久化存储的，不能像一个变量一个，放在内存中， 服务器重启就消失了，所以需要将数据存储在数据库中，达到持久化存储的目的。</p><h3 id="常用的关系型数据库"><a href="#常用的关系型数据库" class="headerlink" title="常用的关系型数据库"></a>常用的关系型数据库</h3><ol><li>MySQL：开源免费。</li><li>Oracle：大型系统（银行系统、ERP系统、医院系统等，Java体系）</li><li>sql server：基于windows server服务器中使用，c# .net体系</li></ol><h3 id="存储数据的方式"><a href="#存储数据的方式" class="headerlink" title="存储数据的方式"></a>存储数据的方式</h3><p>二维表，像是一个个excel文件。</p><h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h3 id="一、下载mysql"><a href="#一、下载mysql" class="headerlink" title="一、下载mysql"></a>一、下载mysql</h3><p>这里推荐下载mysql5.7.23版本：<a href="https://downloads.mysql.com/archives/community/">下载地址</a></p><h3 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h3><ol><li><p>将下载后的压缩包解压到本地，例如c盘根目录。C:\mysql-5.7.23-winx64</p></li><li><p>在mysql目录中创建一个空的data目录和一个mysql.ini文件</p><p>ini文件内容如下</p> <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysql]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8 </span><br><span class="line"></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置3306端口</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="attr">basedir</span>=F:\mysql\mysql-<span class="number">5.7</span>.<span class="number">24</span>-winx64\mysql-<span class="number">5.7</span>.<span class="number">24</span>-winx64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="attr">datadir</span>=F:\mysql\mysql-<span class="number">5.7</span>.<span class="number">24</span>-winx64\mysql-<span class="number">5.7</span>.<span class="number">24</span>-winx64\data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br></pre></td></tr></table></figure></li><li><p>配置环境变量，将mysql&#x2F;bin目录加到path中。</p></li><li><p>执行命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize-insecure --user=mysql</span><br><span class="line">mysqld install <span class="comment">#创建服务，需要以管理员的权限打开命令行工具</span></span><br><span class="line">net start mysql <span class="comment">#启动服务</span></span><br></pre></td></tr></table></figure></li><li><p>链接mysql</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></li><li><p>修改密码</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p password</span><br><span class="line"><span class="comment"># 先输入旧密码，默认为空，直接回车即可，然后输入两次新密码。</span></span><br></pre></td></tr></table></figure></li></ol>]]></content>
       
       
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Http协议</title>
+      <link href="/2022/04/07/HTTP%E5%8D%8F%E8%AE%AE/"/>
+      <url>/2022/04/07/HTTP%E5%8D%8F%E8%AE%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>HTTP</strong>协议(超文本传输协议HyperText Transfer Protocol)，它是基于TCP协议的应用层传输协议，是客户端和服务端进行数据传输的一种规则。</p><p>HTTP 是一种无状态 (stateless) 协议, HTTP协议本身不会对发送过的请求和相应的通信状态进行持久化处理。这样做的目的是为了保持HTTP协议的简单性，从而能够快速处理大量的事务, 提高效率。</p><p>但是，很多应用场景中，我们需要保持各种状态，如：登录状态等。我们就必须引入一些技术来记录管理状态，例如Cookie。</p><h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><p>在HTTP请求中，包含了请求行，请求头，请求体三个部。</p><p>请求行：由请求Method、URL、HTTP Version三部分构成,<br>总的来说请求行就是定义了本次请求的请求方式, 请求的地址, 以及所遵循的HTTP协议版本</p><p>请求头：由一系列的键值对组成，允许客户端向服务器端发送一些附加信息或者客户端自身的信息</p><p>请求体：在发送POST请求时才会有请求正文，GET方法并没有请求正文。</p><h2 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h2><p>HTTP响应也由三部分组成，包括状态行，消息报头，响应正文。详情如上图所示。</p><p>常见的响应状态码如下：</p><table><thead><tr><th>状态码</th><th>语义</th><th>描述</th></tr></thead><tbody><tr><td>200</td><td>Ok</td><td>请求成功</td></tr><tr><td>301</td><td>Moved Permanently</td><td>永久重定向</td></tr><tr><td>302</td><td>Found</td><td>临时重定向</td></tr><tr><td>404</td><td>Not Found</td><td>页面不存在</td></tr><tr><td>405</td><td>Method Not Allowed</td><td>客户端的请求方法被禁止</td></tr><tr><td>500</td><td>Internal Server Error</td><td>服务器内部错误</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Http </tag>
+            
+        </tags>
       
     </entry>
     
@@ -37,6 +111,12 @@
         <content type="html"><![CDATA[<h1 id="homebrew安装、卸载、基本操作"><a href="#homebrew安装、卸载、基本操作" class="headerlink" title="homebrew安装、卸载、基本操作"></a>homebrew安装、卸载、基本操作</h1><h2 id="一、Homebrew是什么？Homebrew的安装和使用"><a href="#一、Homebrew是什么？Homebrew的安装和使用" class="headerlink" title="一、Homebrew是什么？Homebrew的安装和使用"></a>一、Homebrew是什么？Homebrew的安装和使用</h2><p>**Homebrew ** 是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</p><h3 id="1-1名词概念"><a href="#1-1名词概念" class="headerlink" title="1.1名词概念"></a>1.1名词概念</h3><p><strong>brew</strong>（意为酿酒）的命名很有意思，全部都使用了酿酒过程中采用的材料&#x2F;器具，名词对应以下的概念：</p><p><strong>Tap</strong> （水龙头）程序包的源</p><p><strong>Bottle</strong> （瓶子）编译打包好的程序包</p><p><strong>Formula</strong>（配方） 程序包定义，本质上是一个rb文件.代指软件包名,如git(实际操作: brew install git)</p><p><strong>Keg</strong> （桶）程序包的安装路径</p><p><strong>Cellar</strong> （地窖）所有程序包（桶）的根目录</p><p>最终编译安装完毕的程序就是一桶酿造好的酒。</p><h3 id="二、brew-安装脚本-（自动选择软件源）"><a href="#二、brew-安装脚本-（自动选择软件源）" class="headerlink" title="二、brew 安装脚本 （自动选择软件源）"></a>二、brew 安装脚本 （自动选择软件源）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;</span><br></pre></td></tr></table></figure><h3 id="三、brew-卸载脚本"><a href="#三、brew-卸载脚本" class="headerlink" title="三、brew 卸载脚本"></a>三、brew 卸载脚本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/HomebrewUninstall.sh)&quot;</span><br></pre></td></tr></table></figure><h3 id="四、常用命令"><a href="#四、常用命令" class="headerlink" title="四、常用命令"></a>四、常用命令</h3><p>安装软件：<code>brew install xxx</code></p><p>卸载软件：<code>brew uninstall xxx</code></p><p>搜索软件：<code>brew search xxx</code></p><p>更新软件：<code>brew upgrade xxx</code></p><p>查看列表：<code>brew list</code></p><p>更新brew：<code>brew update</code></p><p>清理所有包的旧版本：<code>brew cleanup</code></p><p>清理指定包的旧版本：<code>brew cleanup $FORMULA</code></p><p>查看可清理的旧版本包，不执行实际操作：<code>brew cleanup -n</code></p><p>本地软件库列表：brew ls</p><p>查找软件：brew search google（其中google替换为要查找的关键字）</p><p>查看brew版本：brew -v 更新brew版本：brew update</p><p>安装cask软件：brew install –cask firefox 把firefox换成你要安装的</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> Homebrew </tag>
+            
+        </tags>
       
     </entry>
     
