@@ -8,12 +8,12 @@ http://example.com/link/index.html
 http://example.com/categories/index.html
 http://example.com/about/index.html
 http://example.com/
-http://example.com/tags/Http/
+http://example.com/tags/Hexo/
 http://example.com/tags/Java/
+http://example.com/tags/Http/
 http://example.com/tags/Homebrew/
 http://example.com/tags/MySql/
-http://example.com/tags/Hexo/
-http://example.com/categories/%E5%89%8D%E7%AB%AF/
-http://example.com/categories/Java/
-http://example.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/
 http://example.com/categories/Hexo/
+http://example.com/categories/Java/
+http://example.com/categories/%E5%89%8D%E7%AB%AF/
+http://example.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/
