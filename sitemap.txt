@@ -1,0 +1,8 @@
+http://example.com/2022/04/05/homebrew%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD%E3%80%81%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/
+http://example.com/2022/06/05/hello-world/
+http://example.com/2022/05/05/%E7%AC%AC01%E8%8A%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/
+http://example.com/link/index.html
+http://example.com/categories/index.html
+http://example.com/tags/index.html
+http://example.com/about/index.html
+http://example.com/
