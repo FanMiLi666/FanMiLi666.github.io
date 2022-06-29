@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>Hexo 博客添加 Live2d 小人</title>
-      <link href="/2022/06/05/Hexo%20%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%20Live2d%20%E5%B0%8F%E4%BA%BA/"/>
-      <url>/2022/06/05/Hexo%20%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%20Live2d%20%E5%B0%8F%E4%BA%BA/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Hexo-博客添加-Live2d-小人"><a href="#Hexo-博客添加-Live2d-小人" class="headerlink" title="Hexo 博客添加 Live2d 小人"></a>Hexo 博客添加 Live2d 小人</h1><h3 id="一、安装hexo-helper-live2d插件"><a href="#一、安装hexo-helper-live2d插件" class="headerlink" title="一、安装hexo-helper-live2d插件"></a>一、安装hexo-helper-live2d插件</h3><p>**现在假设你已经又一个使用<code>hexo</code>搭建的博客，然后我们安装<a href="https://github.com/EYHN/hexo-helper-live2d">hexo-helper-live2d</a>模块</p><p><a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md">hexo-helper-live2d官方中文文档</a></p><blockquote><p>npm install –save hexo-helper-live2d</p></blockquote><h3 id="二、添加配置文件"><a href="#二、添加配置文件" class="headerlink" title="二、添加配置文件"></a>二、添加配置文件</h3><p>在<code>hexo</code>博客到<code>_config.yml</code>文件添加以下配置 建议在根目录下的<code>_config.yml</code>配置，这样以后换了主题就不用重新配置了 当然也可以在<code>themes</code>下的<code>_config.yml</code>配置但是要注意模型目录要填写正确</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">   enable: true  # 是否启动</span><br><span class="line">   scriptFrom: local # 默认</span><br><span class="line">   pluginRootPath: live2dw/  # 插件在站点上的根目录(相对路径)</span><br><span class="line">   pluginJsPath: lib/  # 脚本文件相对与插件根目录路径</span><br><span class="line">   pluginModelPath: assets/  # 模型文件相对与插件根目录路径</span><br><span class="line">   tagMode: false  # 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span><br><span class="line">   debug: false  # 调试, 是否在控制台输出日志</span><br><span class="line">   model:</span><br><span class="line">     use: live2d-widget  ## 模型文件</span><br><span class="line">   display:</span><br><span class="line">     position: right # 定位方向 left right top bottom</span><br><span class="line">     width: 150  # 小人宽度</span><br><span class="line">     height: 300 #  小人高度</span><br><span class="line">     hOffset: -15  # 向</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> Hexo </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Hexo </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Hello Word</title>
       <link href="/2022/06/05/hello-world/"/>
       <url>/2022/06/05/hello-world/</url>
@@ -46,6 +21,31 @@
         <tags>
             
             <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo 博客添加 Live2d 小人</title>
+      <link href="/2022/06/05/Hexo%20%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%20Live2d%20%E5%B0%8F%E4%BA%BA/"/>
+      <url>/2022/06/05/Hexo%20%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%20Live2d%20%E5%B0%8F%E4%BA%BA/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Hexo-博客添加-Live2d-小人"><a href="#Hexo-博客添加-Live2d-小人" class="headerlink" title="Hexo 博客添加 Live2d 小人"></a>Hexo 博客添加 Live2d 小人</h1><h3 id="一、安装hexo-helper-live2d插件"><a href="#一、安装hexo-helper-live2d插件" class="headerlink" title="一、安装hexo-helper-live2d插件"></a>一、安装hexo-helper-live2d插件</h3><p>**现在假设你已经又一个使用<code>hexo</code>搭建的博客，然后我们安装<a href="https://github.com/EYHN/hexo-helper-live2d">hexo-helper-live2d</a>模块</p><p><a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md">hexo-helper-live2d官方中文文档</a></p><blockquote><p>npm install –save hexo-helper-live2d</p></blockquote><h3 id="二、添加配置文件"><a href="#二、添加配置文件" class="headerlink" title="二、添加配置文件"></a>二、添加配置文件</h3><p>在<code>hexo</code>博客到<code>_config.yml</code>文件添加以下配置 建议在根目录下的<code>_config.yml</code>配置，这样以后换了主题就不用重新配置了 当然也可以在<code>themes</code>下的<code>_config.yml</code>配置但是要注意模型目录要填写正确</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">   enable: true  # 是否启动</span><br><span class="line">   scriptFrom: local # 默认</span><br><span class="line">   pluginRootPath: live2dw/  # 插件在站点上的根目录(相对路径)</span><br><span class="line">   pluginJsPath: lib/  # 脚本文件相对与插件根目录路径</span><br><span class="line">   pluginModelPath: assets/  # 模型文件相对与插件根目录路径</span><br><span class="line">   tagMode: false  # 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span><br><span class="line">   debug: false  # 调试, 是否在控制台输出日志</span><br><span class="line">   model:</span><br><span class="line">     use: live2d-widget  ## 模型文件</span><br><span class="line">   display:</span><br><span class="line">     position: right # 定位方向 left right top bottom</span><br><span class="line">     width: 150  # 小人宽度</span><br><span class="line">     height: 300 #  小人高度</span><br><span class="line">     hOffset: -15  # 向</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
@@ -115,6 +115,31 @@
         <tags>
             
             <tag> Homebrew </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java的基础</title>
+      <link href="/2021/06/05/java/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2021/06/05/java/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Java的基础介绍"><a href="#Java的基础介绍" class="headerlink" title="Java的基础介绍"></a>Java的基础介绍</h1><h2 id="1、java的开发流程"><a href="#1、java的开发流程" class="headerlink" title="1、java的开发流程"></a>1、java的开发流程</h2><p>开发Java程序，需要三个步骤：编写程序，编译程序，运行程序。</p><p>​编译文件。编译后会产生一个class文件。</p><p>​java文件：程序员自己编写的代码。</p><p>​class文件：交给计算机执行的文件。</p><p>运行代码</p><p><strong>注意</strong>：运行的是编译之后的class文件。</p><h2 id="2-、HelloWorld常见问题"><a href="#2-、HelloWorld常见问题" class="headerlink" title="2 、HelloWorld常见问题"></a>2 、HelloWorld常见问题</h2><p>2.1、非法字符问题。Java中的符号都是英文格式的。</p><p>2.2、大小写问题。Java语言对大小写敏感（区分大小写）。</p><p>2.3、在系统中显示文件的扩展名，避免出现HelloWorld.java.txt文件。</p><p>2.4、编译命令后的java文件名需要带文件后缀.java</p><p>2.5、运行命令后的class文件名（类名）不带文件后缀.class</p><h2 id="3、环境变量"><a href="#3、环境变量" class="headerlink" title="3、环境变量"></a>3、环境变量</h2><h4 id="3-1为什么配置环境变量"><a href="#3-1为什么配置环境变量" class="headerlink" title="3.1为什么配置环境变量"></a>3.1为什么配置环境变量</h4><p>​开发Java程序，需要使用JDK提供的开发工具（比如javac.exe、java.exe等命令），而这些工具在JDK的安装目录的bin目录下，如果不配置环境变量，那么这些命令只可以在bin目录下使用，而我们想要在任意目录下都能使用，所以就要配置环境变量。</p><p>注意：现在最新从官网上下载的JDK安装时会自动配置javac、java命令的路径到Path环境变量中去 ，所以javac、java可以直接使用。</p><h2 id="4、-Java的三大平台"><a href="#4、-Java的三大平台" class="headerlink" title="4、 Java的三大平台"></a>4、 Java的三大平台</h2><p>JavaSE、JavaME、JavaEE</p><p>JavaSE是其他两个版本的基础。</p><h4 id="4-1-JavaME"><a href="#4-1-JavaME" class="headerlink" title="4.1 JavaME"></a>4.1 JavaME</h4><p>​Java语言的小型版，用于嵌入式消费类电子设备或者小型移动设备的开发。</p><p>​其中最为主要的还是小型移动设备的开发（手机）。渐渐的没落了，已经被安卓和IOS给替代了。</p><p>​但是，安卓也是可以用Java来开发的。</p><h4 id="4-2-JavaEE"><a href="#4-2-JavaEE" class="headerlink" title="4.2 JavaEE"></a>4.2 JavaEE</h4><p>​用于Web方向的网站开发。（主要从事后台服务器的开发）</p><p>​在服务器领域，Java是当之无愧的龙头老大。</p><h2 id="5、-Java的主要特性"><a href="#5、-Java的主要特性" class="headerlink" title="5、 Java的主要特性"></a>5、 Java的主要特性</h2><ul><li>面向对象</li><li>安全性</li><li>多线程</li><li>简单易用</li><li>开源</li><li>跨平台</li></ul><h4 id="5-1-Java语言跨平台的原理"><a href="#5-1-Java语言跨平台的原理" class="headerlink" title="5.1 Java语言跨平台的原理"></a>5.1 Java语言跨平台的原理</h4><ul><li>操作系统本身其实是不认识Java语言的。</li><li>但是针对于不同的操作系统，Java提供了不同的虚拟机。</li></ul><p>虚拟机会把Java语言翻译成操作系统能看得懂的语言。</p><h2 id="6、-JRE和JDK"><a href="#6、-JRE和JDK" class="headerlink" title="6、 JRE和JDK"></a>6、 JRE和JDK</h2><p>JVM（Java Virtual Machine），Java虚拟机</p><p>JRE（Java Runtime Environment），Java运行环境，包含了JVM和Java的核心类库（Java API）</p><p>JDK（Java Development Kit）称为Java开发工具，包含了JRE和开发工具</p><p>总结：我们只需安装JDK即可，它包含了java的运行环境和虚拟机。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
             
         </tags>
       
