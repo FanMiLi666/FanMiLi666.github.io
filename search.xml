@@ -98,6 +98,31 @@
     
     
     <entry>
+      <title>Java八大字符类型</title>
+      <link href="/2020/05/01/java/day05-Java%E5%85%AB%E5%A4%A7%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B/"/>
+      <url>/2020/05/01/java/day05-Java%E5%85%AB%E5%A4%A7%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Java八大字符类型"><a href="#Java八大字符类型" class="headerlink" title="Java八大字符类型"></a>Java八大字符类型</h1><p>*<strong>byte占一个字节范围：-128-127；</strong><br>*<strong>short占两个字节范围：-32768-32767；</strong><br>*<strong>int占4个字节范围；</strong><br>*<strong>long占8字节范围</strong><br>*<strong>float占4个字节</strong><br>*<strong>double占8字节</strong><br>*<strong>char占两字节</strong><br>*<strong>boolean占一字节只有true和false两个；</strong></p><h2 id="1-整数型"><a href="#1-整数型" class="headerlink" title="1.整数型"></a>1.整数型</h2><p>byte numb1&#x3D;15;<br>short numb2&#x3D;15454;<br>int numb3&#x3D;1546875484;<br>long numb4&#x3D;4846498881454454L;&#x2F;&#x2F;long类型要在数字后面加个L</p><h2 id="2-浮点型（小数型）精度高"><a href="#2-浮点型（小数型）精度高" class="headerlink" title="2.浮点型（小数型）精度高"></a>2.浮点型（小数型）精度高</h2><p>flout numb5&#x3D;15.1f;&#x2F;&#x2F;flout要在数字后面加个f;<br>double numb6&#x3D;45.124;</p><h2 id="3-字符型"><a href="#3-字符型" class="headerlink" title="3.字符型"></a>3.字符型</h2><p>char name1&#x3D;’a’;<br>char name2&#x3D;’李’;</p><h2 id="4-字符串，string不是关键字，而是类；"><a href="#4-字符串，string不是关键字，而是类；" class="headerlink" title="4.字符串，string不是关键字，而是类；"></a>4.字符串，string不是关键字，而是类；</h2><p>string name3&#x3D;”李霍霍”;</p><h2 id="5-布尔型：只有是非"><a href="#5-布尔型：只有是非" class="headerlink" title="5.布尔型：只有是非"></a>5.布尔型：只有是非</h2><p>boolean flag&#x3D;true;<br>boolean flag1&#x3D;flase;</p><h2 id="6-数组默认初始化值的规律（额外）"><a href="#6-数组默认初始化值的规律（额外）" class="headerlink" title="6.数组默认初始化值的规律（额外）"></a>6.数组默认初始化值的规律（额外）</h2><p>整数类型：默认初始值为 0</p><p>小数类型：默认初始值为 0.0</p><p>字符类型：默认初始值为 ‘&#x2F;u0000’ 空格</p><p>布尔类型：默认初始值为 false</p><p>引用数据类型：默认初始值为 null（除了这四种之外的）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java的流程控制语句</title>
       <link href="/2020/04/01/java/day04-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/"/>
       <url>/2020/04/01/java/day04-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</url>
