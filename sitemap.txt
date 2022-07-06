@@ -1,3 +1,5 @@
+http://example.com/2021/07/06/java/day07-Maven%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/
+http://example.com/2020/07/06/java/day06-%E6%96%B9%E6%B3%95/
 http://example.com/2020/05/01/java/day05-Java%E5%85%AB%E5%A4%A7%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B/
 http://example.com/2020/04/01/java/day04-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/
 http://example.com/2020/03/01/java/day03-%E8%BF%90%E7%AE%97%E7%AC%A6/
@@ -12,12 +14,14 @@ http://example.com/link/index.html
 http://example.com/categories/index.html
 http://example.com/about/index.html
 http://example.com/
-http://example.com/tags/Http/
 http://example.com/tags/Hexo/
+http://example.com/tags/Http/
 http://example.com/tags/Homebrew/
 http://example.com/tags/MySql/
 http://example.com/tags/Java/
-http://example.com/categories/%E5%89%8D%E7%AB%AF/
+http://example.com/tags/Maven/
 http://example.com/categories/Hexo/
+http://example.com/categories/%E5%89%8D%E7%AB%AF/
 http://example.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/
 http://example.com/categories/Java/
+http://example.com/categories/Maven/
