@@ -1,0 +1,406 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Java web基本概念 | 春日迟迟 卉木萋萋</title><meta name="keywords" content="Java web"><meta name="author" content="Ayo"><meta name="copyright" content="Ayo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="介绍web、服务器、Http接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java web基本概念">
+<meta property="og:url" content="http://example.com/2021/03/07/java%20web/Java%20web%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="春日迟迟 卉木萋萋">
+<meta property="og:description" content="介绍web、服务器、Http接口">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2017/09/30/01/16/kitten-2801007__480.jpg">
+<meta property="article:published_time" content="2021-03-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-25T08:15:43.022Z">
+<meta property="article:author" content="Ayo">
+<meta property="article:tag" content="Java web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2017/09/30/01/16/kitten-2801007__480.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/03/07/java%20web/Java%20web%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java web基本概念',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-25 16:15:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.pixabay.com/photo/2017/09/30/01/16/kitten-2801007__480.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">春日迟迟 卉木萋萋</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Java web基本概念</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-06T16:00:00.000Z" title="发表于 2021-03-07 00:00:00">2021-03-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-25T08:15:43.022Z" title="更新于 2022-07-25 16:15:43">2022-07-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java-web/">Java web</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java web基本概念"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-Java-web"><a href="#1-Java-web" class="headerlink" title="1.Java web"></a>1.Java web</h1><h2 id="1-1Java-web基本概念："><a href="#1-1Java-web基本概念：" class="headerlink" title="1.1Java web基本概念："></a>1.1Java web基本概念：</h2><ul>
+<li><p>静态web：html，css</p>
+<ul>
+<li>（提供给所有人看的数据，始终不会发生变化）</li>
+</ul>
+</li>
+<li><p>动态web：Servlet&#x2F;JSP，ASP，PHP，</p>
+</li>
+<li><ul>
+<li>淘宝等几乎所有的网站（提供给所有人看的数据，始终会发生变化，每个人在不同时间，不同地方看到的都不同）</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-2web应用程序"><a href="#1-2web应用程序" class="headerlink" title="1.2web应用程序"></a>1.2web应用程序</h2><p>web应用程序：可以提供浏览器访问的程序</p>
+<ul>
+<li>a.html、b.html等多个web资源，这些web资源可以被外界访问，对外界提供服务。</li>
+</ul>
+<ul>
+<li>能访问到的任何一个页面或者资源，都存在于这个世界的某一个角落的计算机上。</li>
+<li>URL：统一资源定位符。</li>
+<li>这个统一的web资源会被放在同一个文件夹下，web应用程序—&gt;Tomcat：服务器。</li>
+<li>一个web应用由多部分组成（静态web、动态web）<ul>
+<li>html、css、js、</li>
+<li>jsp、servlet</li>
+<li>java程序</li>
+<li>jar包</li>
+<li>配置文件（properties）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>web应用程序编写完毕后，若想提供给外界访问：需要一个服务器来统一管理。</li>
+</ul>
+<h2 id="1-3静态web"><a href="#1-3静态web" class="headerlink" title="1.3静态web"></a>1.3静态web</h2><p><em>.htm，</em>.html，这些都是网页的后缀，如果服务器上一直存在这些东西，我们就可以直接进行读取。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220711161131442.png" alt="image-20220711161131442"></p>
+<p>静态web存在的缺点</p>
+<ul>
+<li><p>Web页面无法动态更新，所用用户看到的都是同一个页面</p>
+</li>
+<li><p>轮播图，伪动态</p>
+</li>
+<li><p>javaScript（实际开发中，用的最多）</p>
+</li>
+<li><p>它无法和数据库交互（数据无法持久化，用户无法交互）</p>
+</li>
+</ul>
+<h2 id="1-4动态web"><a href="#1-4动态web" class="headerlink" title="1.4动态web"></a>1.4动态web</h2><p>页面会动态展示：Web的页面展示的效果因人而异。（千人千面）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220711161620630.png" alt="image-20220711161620630"></p>
+<p>动态web存在的缺点</p>
+<ul>
+<li>加入服务器的动态web资源出现了错误，我们需要重新编写我们的后台程序，重新发布。</li>
+<li><ul>
+<li>停机维护</li>
+</ul>
+</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>web页面可以动态更新，所有用户看到都不是同一个页面</li>
+<li>它可以与数据库交互（数据持久化：注册，商品信息。）</li>
+</ul>
+<h2 id="1-5web服务器"><a href="#1-5web服务器" class="headerlink" title="1.5web服务器"></a>1.5web服务器</h2><p>服务器是一种被动的操作，用来处理用户的一些请求和给用户一些响应信息。</p>
+<p>Java编写的[服务器端程序：JSP&#x2F;Servlet：</p>
+<p>架构：B&#x2F;S：浏览和服务器</p>
+<p>C&#x2F;S：客户端和服务器</p>
+<ul>
+<li>sun公司主推的B&#x2F;S架构</li>
+<li>基于Java语言的，大部分开源组件</li>
+<li>可以承载三高问题带来的影响（高并发、高可用、高性能）</li>
+</ul>
+<p>服务器：</p>
+<p>IIS：Windows中自带</p>
+<p>tomacat：Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器。</p>
+<h1 id="2-tomacat详解"><a href="#2-tomacat详解" class="headerlink" title="2.tomacat详解"></a>2.tomacat详解</h1><p>文件夹作用：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220711163936350.png" alt="image-20220711163936350"></p>
+<p>temp：临时变量</p>
+<p>work：工作目录</p>
+<h2 id="2-1配置"><a href="#2-1配置" class="headerlink" title="2.1配置"></a>2.1配置</h2><p>可以配置启动的端口号</p>
+<ul>
+<li>tomacat的默认端口号：8080</li>
+<li>mysql：3306</li>
+<li>http：80</li>
+<li>https：443</li>
+</ul>
+<p>在tomacat文件里，server.xml文件。</p>
+<pre><code>&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+           connectionTimeout=&quot;20000&quot;
+           redirectPort=&quot;8443&quot; /&gt;
+</code></pre>
+<p>可以配置主机的名称</p>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220711170337522.png" alt="image-20220711170337522"></p>
+<p>可以改但没必要</p>
+<h2 id="2-2面试题：请你谈谈网站是如何访问的？"><a href="#2-2面试题：请你谈谈网站是如何访问的？" class="headerlink" title="2.2面试题：请你谈谈网站是如何访问的？"></a>2.2面试题：请你谈谈网站是如何访问的？</h2><ol>
+<li><p>输入一个域名，回车</p>
+</li>
+<li><p>检查本机的C:Windows\System32\drivers\etc\hosts配置文件下有没有这个域名映射<br>有：直接返回对应的ip地址，这个地址中，有我们需要访问的web程序，可以直接访问。</p>
+<p>没有：去DNS服务器找，找到的话就返回，找不到就返回找不到。</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220711170814457.png" alt="image-20220711170814457"></p>
+<h1 id="3-Http"><a href="#3-Http" class="headerlink" title="3.Http"></a>3.Http</h1><h2 id="3-1什么是Http"><a href="#3-1什么是Http" class="headerlink" title="3.1什么是Http"></a>3.1什么是Http</h2><p>HTTP（超文本传输协议）是一个简单的请求-响应协议，它通常运行在TCP之上。</p>
+<ul>
+<li>TCP：传输控制协议（TCP，Transmission Control Protocol）是一种面向连接的、可靠的、基于字节流的传输层通信协议。</li>
+</ul>
+<ul>
+<li>文本：html，字符串…</li>
+<li>超文本：图片，音乐，视频，定位，地图…</li>
+<li>默认端口：80<br>HTTPS：安全的协议</li>
+<li>默认端口：443</li>
+</ul>
+<h2 id="3-2http的两个时代"><a href="#3-2http的两个时代" class="headerlink" title="3.2http的两个时代"></a>3.2http的两个时代</h2><ul>
+<li>http1.0：客户端可以与web服务器连接后，只能获得一个web资源，断开连接。</li>
+<li>http2.0：客户端可以与web服务器连接后，可以获得多个web资源。</li>
+</ul>
+<h2 id="3-3http请求"><a href="#3-3http请求" class="headerlink" title="3.3http请求"></a>3.3http请求</h2><p>客户端—-&gt;发请求(request)—-&gt;服务器（比如：访问百度）</p>
+<p>百度F12查看（拿百度举例，其他网站也可以）</p>
+<p>General</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. Request URL: https://www.baidu.com/`      			    // 请求地址</span><br><span class="line">2. Request Method: GET                  			 // 请求方法：get方法/post方法</span><br><span class="line">3. `Status Code: 200 OK`                     		 // 状态代码：200，也有3或者4和5开头</span><br><span class="line">4. `Remote（远程） Address: 14.215.177.38:443             // 远程地址</span><br><span class="line">5. `Referrer Policy: strict-origin-when-cross-origin   // 引用站点策略</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220711172025351.png" alt="image-20220711172025351"></p>
+<h3 id="3-3-1请求行"><a href="#3-3-1请求行" class="headerlink" title="3.3.1请求行"></a>3.3.1请求行</h3><ul>
+<li>请求行中的请求方式：GET</li>
+<li>请求方式：Get，Post，HEAD，DELETE，PUT…<br><strong>GET:请求能够携带的参数比较少，大小有限制，会在浏览器的URL地址栏显示数据内容，不安全，但高效。</strong><br><strong>POST:请求能够携带的参数没有限制，大小没有限制，不会在浏览器的URL地址栏显示数据内容，安全，但不高效。</strong></li>
+<li>一般用到get和post比较多</li>
+</ul>
+<h3 id="3-3-2请求头（消息头）"><a href="#3-3-2请求头（消息头）" class="headerlink" title="3.3.2请求头（消息头）"></a>3.3.2请求头（消息头）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Accept: 告诉浏览器，它所支持的数据类型</span><br><span class="line">Accept-Encoding: 告诉浏览器，它支持哪种编码格式：GBK,UTF-8,GB2312,ISO8859-1</span><br><span class="line">Accept-Language: 告诉浏览器，它的语言环境</span><br><span class="line">Cache-Control: 缓存控制</span><br><span class="line">Connection: 告诉浏览器，请求完成是断开还是保持</span><br><span class="line">HOST：主机</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4http响应"><a href="#3-4http响应" class="headerlink" title="3.4http响应"></a>3.4http响应</h2><p>同是百度里找到：</p>
+<p>&#x2F;&#x2F; 缓存控制<br>Cache-Control: no-cache<br>&#x2F;&#x2F; 保持连接（http1.1）<br>Connection: keep-alive<br>&#x2F;&#x2F; 文本编码类型<br>Content-Encoding: gzip<br>&#x2F;&#x2F; 响应类型<br>Content-Type: text&#x2F;html;charset&#x3D;utf-8</p>
+<h3 id="3-4-1响应体"><a href="#3-4-1响应体" class="headerlink" title="3.4.1响应体"></a>3.4.1响应体</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Accept: 告诉浏览器，它所支持的数据类型</span><br><span class="line">Accept-Encoding: 告诉浏览器，它支持哪种编码格式：GBK,UTF-8,GB2312,ISO8859-1</span><br><span class="line">Accept-Language: 告诉浏览器，它的语言环境</span><br><span class="line">Cache-Control: 缓存控制</span><br><span class="line">Connection: 告诉浏览器，请求完成是断开还是保持</span><br><span class="line">HOST：主机</span><br><span class="line">Refrush：告诉客户端，多久刷新一次</span><br><span class="line">Location：让网页重新定位</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-2响应状态码（重点）"><a href="#3-4-2响应状态码（重点）" class="headerlink" title="3.4.2响应状态码（重点）"></a>3.4.2响应状态码（重点）</h3><ul>
+<li><p>200：响应成功</p>
+</li>
+<li><p>3xx：请求重定向（304等等）</p>
+<p>—–&gt;&gt;&gt;重定向：你重新给我到你新位置去。</p>
+</li>
+<li><p>4xx：找不到资源（404等等）</p>
+<p>—–&gt;&gt;&gt;资源不存在 </p>
+</li>
+<li><p>5xx：服务器代码错误（500代码错误，502网关错误）</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Ayo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/03/07/java%20web/Java%20web%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">http://example.com/2021/03/07/java web/Java web的基本概念/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">春日迟迟 卉木萋萋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java-web/">Java web</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.pixabay.com/photo/2017/09/30/01/16/kitten-2801007__480.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/07/java%20web/jdbc%E5%9F%BA%E7%A1%80/"><img class="prev-cover" src="https://cdn.pixabay.com/photo/2022/06/27/08/37/lotus-7287044__340.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">JDBC概述</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/16/java/day09-%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E6%9E%9A%E4%B8%BE%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB/"><img class="next-cover" src="https://cdn.pixabay.com/photo/2022/06/20/20/21/raining-7274548__340.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java中的修饰符、枚举、抽象类</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/04/07/java%20web/jdbc%E5%9F%BA%E7%A1%80/" title="JDBC概述"><img class="cover" src="https://cdn.pixabay.com/photo/2022/06/27/08/37/lotus-7287044__340.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-07</div><div class="title">JDBC概述</div></div></a></div><div><a href="/2021/05/07/java%20web/%E4%BA%86%E8%A7%A3Servlet/" title="了解Servlet"><img class="cover" src="https://cdn.pixabay.com/photo/2022/07/10/18/21/allium-7313550__340.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-07</div><div class="title">了解Servlet</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjY3OC8zMzE0Mg=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ayo</div><div class="author-info__description">coding就是生产力</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FanMiLi666"><i class="fab fa-github"></i><span>codeing中</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FanMiLi666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/FamilyOver?spm=1000.2115.3001.5343" target="_blank" title="csdn"><i class="fas fa-solid fa-c"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">每个优秀的人，都有一段沉默的时光。那段时光，是付出了很多努力，却得不到结果的日子，我们把它叫做扎根！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Java-web"><span class="toc-number">1.</span> <span class="toc-text">1.Java web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1Java-web%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">1.1Java web基本概念：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text">1.2web应用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E9%9D%99%E6%80%81web"><span class="toc-number">1.3.</span> <span class="toc-text">1.3静态web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4%E5%8A%A8%E6%80%81web"><span class="toc-number">1.4.</span> <span class="toc-text">1.4动态web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5web%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text">1.5web服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-tomacat%E8%AF%A6%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">2.tomacat详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">2.1配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A%E8%AF%B7%E4%BD%A0%E8%B0%88%E8%B0%88%E7%BD%91%E7%AB%99%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE%E7%9A%84%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">2.2面试题：请你谈谈网站是如何访问的？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Http"><span class="toc-number">3.</span> <span class="toc-text">3.Http</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E4%BB%80%E4%B9%88%E6%98%AFHttp"><span class="toc-number">3.1.</span> <span class="toc-text">3.1什么是Http</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2http%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%97%B6%E4%BB%A3"><span class="toc-number">3.2.</span> <span class="toc-text">3.2http的两个时代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3http%E8%AF%B7%E6%B1%82"><span class="toc-number">3.3.</span> <span class="toc-text">3.3http请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1%E8%AF%B7%E6%B1%82%E8%A1%8C"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.3.1请求行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%88%E6%B6%88%E6%81%AF%E5%A4%B4%EF%BC%89"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.3.2请求头（消息头）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4http%E5%93%8D%E5%BA%94"><span class="toc-number">3.4.</span> <span class="toc-text">3.4http响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1%E5%93%8D%E5%BA%94%E4%BD%93"><span class="toc-number">3.4.1.</span> <span class="toc-text">3.4.1响应体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">3.4.2.</span> <span class="toc-text">3.4.2响应状态码（重点）</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/05/Hexo%20%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%20Live2d%20%E5%B0%8F%E4%BA%BA/" title="Hexo 博客添加 Live2d 小人"><img src="https://cdn.pixabay.com/photo/2017/11/03/18/26/man-2915187__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo 博客添加 Live2d 小人"/></a><div class="content"><a class="title" href="/2022/06/05/Hexo%20%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%20Live2d%20%E5%B0%8F%E4%BA%BA/" title="Hexo 博客添加 Live2d 小人">Hexo 博客添加 Live2d 小人</a><time datetime="2022-06-04T16:00:00.000Z" title="发表于 2022-06-05 00:00:00">2022-06-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/homebrew%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD%E3%80%81%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="Homebrew介绍"><img src="https://cdn.pixabay.com/photo/2022/01/18/16/49/town-6947538__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Homebrew介绍"/></a><div class="content"><a class="title" href="/2022/04/05/homebrew%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD%E3%80%81%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="Homebrew介绍">Homebrew介绍</a><time datetime="2022-04-04T16:00:00.000Z" title="发表于 2022-04-05 00:00:00">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/15/mysql/mysql%E7%BA%A6%E6%9D%9F%E3%80%81%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E4%BA%8B%E5%8A%A1/" title="Mysql约束、设计、多表查询、事务"><img src="https://cdn.pixabay.com/photo/2022/05/03/20/09/prague-7172594__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mysql约束、设计、多表查询、事务"/></a><div class="content"><a class="title" href="/2021/05/15/mysql/mysql%E7%BA%A6%E6%9D%9F%E3%80%81%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E4%BA%8B%E5%8A%A1/" title="Mysql约束、设计、多表查询、事务">Mysql约束、设计、多表查询、事务</a><time datetime="2021-05-14T16:00:00.000Z" title="发表于 2021-05-15 00:00:00">2021-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/15/mysql/Mysql%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" title="Mysql数据库"><img src="https://cdn.pixabay.com/photo/2022/05/17/18/36/flower-7203443__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mysql数据库"/></a><div class="content"><a class="title" href="/2021/05/15/mysql/Mysql%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" title="Mysql数据库">Mysql数据库</a><time datetime="2021-05-14T16:00:00.000Z" title="发表于 2021-05-15 00:00:00">2021-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/07/java%20web/%E4%BA%86%E8%A7%A3Servlet/" title="了解Servlet"><img src="https://cdn.pixabay.com/photo/2022/07/10/18/21/allium-7313550__340.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="了解Servlet"/></a><div class="content"><a class="title" href="/2021/05/07/java%20web/%E4%BA%86%E8%A7%A3Servlet/" title="了解Servlet">了解Servlet</a><time datetime="2021-05-06T16:00:00.000Z" title="发表于 2021-05-07 00:00:00">2021-05-07</time></div></div></div></div></div></div></main><footer id="footer" style="background: fales"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Ayo</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">很高兴认识你😄</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
