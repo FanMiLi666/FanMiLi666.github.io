@@ -1,3 +1,4 @@
+http://example.com/2020/07/27/java/day10%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/
 http://example.com/2021/03/07/java%20web/Java%20web%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/
 http://example.com/2021/05/07/java%20web/%E4%BA%86%E8%A7%A3Servlet/
 http://example.com/2021/04/07/java%20web/jdbc%E5%9F%BA%E7%A1%80/

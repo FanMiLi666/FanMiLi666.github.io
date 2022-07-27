@@ -198,6 +198,31 @@
     
     
     <entry>
+      <title>Java方法重载</title>
+      <link href="/2020/07/27/java/day10%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/"/>
+      <url>/2020/07/27/java/day10%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-Java方法重载规则："><a href="#1-Java方法重载规则：" class="headerlink" title="1.Java方法重载规则："></a>1.Java方法重载规则：</h1><p>1、方法名必须一致</p><p>2、参数列表必须不一致（参数类型、参数个数、参数排列顺序）</p><p>3、方法的返回类型可以相同也可以不同</p><p>4、只是返回类型不同不是方法重载</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220727144339131.png" alt="image-20220727144339131"></p><p>首先，方法名都是fire，保持一致；其次，保证参数列表类型不同。例子中，在方法名相同的情况下，编译器会根据调用方法的参数个数，参数类型进行逐个匹配，从而选择对应的方法。</p><h1 id="2-介绍return、break、continue的区别"><a href="#2-介绍return、break、continue的区别" class="headerlink" title="2.介绍return、break、continue的区别"></a>2.介绍return、break、continue的区别</h1><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220727144415815.png" alt="image-20220727144415815"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java中的修饰符、枚举、抽象类</title>
       <link href="/2020/07/16/java/day09-%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E6%9E%9A%E4%B8%BE%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB/"/>
       <url>/2020/07/16/java/day09-%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E6%9E%9A%E4%B8%BE%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB/</url>
