@@ -216,13 +216,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Hexo/</loc>
-    <lastmod>2022-07-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/Homebrew/</loc>
     <lastmod>2022-07-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -230,7 +223,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/MySql/</loc>
+    <loc>http://example.com/tags/Hexo/</loc>
     <lastmod>2022-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -257,6 +250,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>http://example.com/tags/MySql/</loc>
+    <lastmod>2022-07-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -268,13 +268,6 @@
   
   <url>
     <loc>http://example.com/categories/Hexo/</loc>
-    <lastmod>2022-07-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2022-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -296,6 +289,13 @@
   
   <url>
     <loc>http://example.com/categories/Maven/</loc>
+    <lastmod>2022-07-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2022-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
