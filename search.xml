@@ -323,31 +323,6 @@
     
     
     <entry>
-      <title>Maven基础知识</title>
-      <link href="/2020/07/06/java/day07-Maven%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-      <url>/2020/07/06/java/day07-Maven%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-      
-        <content type="html"><![CDATA[<h1 id="1-Maven简介"><a href="#1-Maven简介" class="headerlink" title="1.Maven简介"></a>1.Maven简介</h1><p>Maven是专门用于管理和构建Java项目的工具，它的主要功能有：</p><p>1.1提供了一套标准化的项目结构</p><ul><li>不同的IDE之间，项目结构不一样，不通用。</li></ul><p><strong>Maven提供了一套标准化的项目结构，所有IDE使用Maven构建的项目结构完全一样，所有IDE创建的Maven项目可以通用。</strong>（这样大家都使用通用的模版，更容易理解）</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/WX20220706-162504@2x.png" alt="WX20220706-162504@2x"></p><p>1.2提供了一套标准化的构建流程（编译，测试，打包，发布…..）</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/WX20220706-162659@2x.png" alt="WX20220706-162659@2x"></p><p><strong>Maven提供了一套简单的命令来完成项目构建</strong>（自己虽然也可以做，但是很琐碎）</p><p>**1.3&lt;提供了一套依赖管理机制**&gt;</p><p>依赖管理其实就是管理你项目所依赖的第三方资源（jar包、插件…..）</p><p>通俗点说：还是为了方便，之前所做的一般来说三步：1.下载jar包。2.复制jar包到项目。3.将jar包加入工作环境。</p><p>但是jar包多了以后就很麻烦，而且jar包下载也很头痛。也是Maven最重要的</p><p><strong>maven是一个管理jar包直接上坐标就能自动下载对应jar包的工具，通过坐标来下载。</strong></p><h1 id="2-Maven常用命令"><a href="#2-Maven常用命令" class="headerlink" title="2.Maven常用命令"></a>2.Maven常用命令</h1><p>compile：编译</p><p>clean：清理</p><p>test：测试</p><p>package：打包</p><p>Install：安装</p><h2 id="2-1Maven生命周期"><a href="#2-1Maven生命周期" class="headerlink" title="2.1Maven生命周期"></a>2.1Maven生命周期</h2><p>Maven构建项目生命周期描述的是一次构建过程经历经历多少个事件</p><p>Maven对项目构建的生命周期划分为三套</p><p>clean：清理工作</p><p>default：核心工作，例如编译，测试，打包，安装等</p><p>site：产生报告，发布站点</p><h1 id="3-IDEA配置Maven"><a href="#3-IDEA配置Maven" class="headerlink" title="3. IDEA配置Maven"></a>3. IDEA配置Maven</h1><h2 id="3-1-IDEA配置Maven环境"><a href="#3-1-IDEA配置Maven环境" class="headerlink" title="3.1 IDEA配置Maven环境"></a>3.1 IDEA配置Maven环境</h2><p> 导入即可，太简单了，设置里有</p><h2 id="3-2-Maven坐标详解"><a href="#3-2-Maven坐标详解" class="headerlink" title="3.2 Maven坐标详解"></a>3.2 Maven坐标详解</h2><p>1.什么是坐标：</p><p>Maven中的坐标是资源的唯一标识</p><p>使用坐标来定义项目或引入项目中所需要的依赖</p><p>2.Maven坐标组成</p><ul><li><p><strong>groupld：</strong>定义当前Maven项目隶属组织名称（通常是域名反写，例如：com.baidu）</p></li><li><p><strong>artifactld：</strong>定义当前Maven项目名称（通常是模块名称，例如order-service、goods-service）</p></li><li><p><strong>version：</strong>定义当前项目版本号。 例如1.1都可以</p></li></ul><p>2.导入idea</p><p>这里只需要导入Maven 的pom文件就可以了，不需要导入项目</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220706172502068.png" alt="image-20220706172502068"></p><h1 id="4-依赖管理"><a href="#4-依赖管理" class="headerlink" title="4.依赖管理"></a>4.依赖管理</h1><p>第一步是进入pom文件，首先查看我们项目的坐标</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220706172958070.png" alt="image-20220706172958070"></p><p>我们所有的jar包都是在dependencies</p><p>导包设置：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--导入mysql 驱动jar包--&gt;</span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">8.0</span><span class="number">.29</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure><p>在依赖项可以查看到，但记得要刷新maven项目，或者是自己添加依赖项，command+n，输入自己所添加的jar包名称，（好处是不用输代码，直接生成,但往往会出来一堆，要自己记住版本号，有些不是很好找）</p><h2 id="4-1依赖范围"><a href="#4-1依赖范围" class="headerlink" title="4.1依赖范围"></a>4.1依赖范围</h2><p>通过设置坐标的依赖范围（scope）可以设置对应jar包的作用范围：<strong>编译环境、测试环境、运行环境</strong>。简单的说，我添加了这个scope，我想让哪个包就用让哪个类用。</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220706204406585.png" alt="image-20220706204406585"></p><p>此外也可以设置依赖范围，但大多情况默认就好。<strong>多了不如少了</strong></p><p>简单的一些Maven基础知识就这么多了。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Maven </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Maven </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Java方法</title>
       <link href="/2020/07/06/java/day06-%E6%96%B9%E6%B3%95/"/>
       <url>/2020/07/06/java/day06-%E6%96%B9%E6%B3%95/</url>
@@ -365,6 +340,31 @@
         <tags>
             
             <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Maven基础知识</title>
+      <link href="/2020/07/06/java/day07-Maven%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <url>/2020/07/06/java/day07-Maven%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-Maven简介"><a href="#1-Maven简介" class="headerlink" title="1.Maven简介"></a>1.Maven简介</h1><p>Maven是专门用于管理和构建Java项目的工具，它的主要功能有：</p><p>1.1提供了一套标准化的项目结构</p><ul><li>不同的IDE之间，项目结构不一样，不通用。</li></ul><p><strong>Maven提供了一套标准化的项目结构，所有IDE使用Maven构建的项目结构完全一样，所有IDE创建的Maven项目可以通用。</strong>（这样大家都使用通用的模版，更容易理解）</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/WX20220706-162504@2x.png" alt="WX20220706-162504@2x"></p><p>1.2提供了一套标准化的构建流程（编译，测试，打包，发布…..）</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/WX20220706-162659@2x.png" alt="WX20220706-162659@2x"></p><p><strong>Maven提供了一套简单的命令来完成项目构建</strong>（自己虽然也可以做，但是很琐碎）</p><p>**1.3&lt;提供了一套依赖管理机制**&gt;</p><p>依赖管理其实就是管理你项目所依赖的第三方资源（jar包、插件…..）</p><p>通俗点说：还是为了方便，之前所做的一般来说三步：1.下载jar包。2.复制jar包到项目。3.将jar包加入工作环境。</p><p>但是jar包多了以后就很麻烦，而且jar包下载也很头痛。也是Maven最重要的</p><p><strong>maven是一个管理jar包直接上坐标就能自动下载对应jar包的工具，通过坐标来下载。</strong></p><h1 id="2-Maven常用命令"><a href="#2-Maven常用命令" class="headerlink" title="2.Maven常用命令"></a>2.Maven常用命令</h1><p>compile：编译</p><p>clean：清理</p><p>test：测试</p><p>package：打包</p><p>Install：安装</p><h2 id="2-1Maven生命周期"><a href="#2-1Maven生命周期" class="headerlink" title="2.1Maven生命周期"></a>2.1Maven生命周期</h2><p>Maven构建项目生命周期描述的是一次构建过程经历经历多少个事件</p><p>Maven对项目构建的生命周期划分为三套</p><p>clean：清理工作</p><p>default：核心工作，例如编译，测试，打包，安装等</p><p>site：产生报告，发布站点</p><h1 id="3-IDEA配置Maven"><a href="#3-IDEA配置Maven" class="headerlink" title="3. IDEA配置Maven"></a>3. IDEA配置Maven</h1><h2 id="3-1-IDEA配置Maven环境"><a href="#3-1-IDEA配置Maven环境" class="headerlink" title="3.1 IDEA配置Maven环境"></a>3.1 IDEA配置Maven环境</h2><p> 导入即可，太简单了，设置里有</p><h2 id="3-2-Maven坐标详解"><a href="#3-2-Maven坐标详解" class="headerlink" title="3.2 Maven坐标详解"></a>3.2 Maven坐标详解</h2><p>1.什么是坐标：</p><p>Maven中的坐标是资源的唯一标识</p><p>使用坐标来定义项目或引入项目中所需要的依赖</p><p>2.Maven坐标组成</p><ul><li><p><strong>groupld：</strong>定义当前Maven项目隶属组织名称（通常是域名反写，例如：com.baidu）</p></li><li><p><strong>artifactld：</strong>定义当前Maven项目名称（通常是模块名称，例如order-service、goods-service）</p></li><li><p><strong>version：</strong>定义当前项目版本号。 例如1.1都可以</p></li></ul><p>2.导入idea</p><p>这里只需要导入Maven 的pom文件就可以了，不需要导入项目</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220706172502068.png" alt="image-20220706172502068"></p><h1 id="4-依赖管理"><a href="#4-依赖管理" class="headerlink" title="4.依赖管理"></a>4.依赖管理</h1><p>第一步是进入pom文件，首先查看我们项目的坐标</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220706172958070.png" alt="image-20220706172958070"></p><p>我们所有的jar包都是在dependencies</p><p>导包设置：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--导入mysql 驱动jar包--&gt;</span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">8.0</span><span class="number">.29</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure><p>在依赖项可以查看到，但记得要刷新maven项目，或者是自己添加依赖项，command+n，输入自己所添加的jar包名称，（好处是不用输代码，直接生成,但往往会出来一堆，要自己记住版本号，有些不是很好找）</p><h2 id="4-1依赖范围"><a href="#4-1依赖范围" class="headerlink" title="4.1依赖范围"></a>4.1依赖范围</h2><p>通过设置坐标的依赖范围（scope）可以设置对应jar包的作用范围：<strong>编译环境、测试环境、运行环境</strong>。简单的说，我添加了这个scope，我想让哪个包就用让哪个类用。</p><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220706204406585.png" alt="image-20220706204406585"></p><p>此外也可以设置依赖范围，但大多情况默认就好。<strong>多了不如少了</strong></p><p>简单的一些Maven基础知识就这么多了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Maven </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Maven </tag>
             
         </tags>
       
