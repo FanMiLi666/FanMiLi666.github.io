@@ -20,7 +20,9 @@
       
         <tags>
             
-            <tag> Springboot、RESTful </tag>
+            <tag> Springboot </tag>
+            
+            <tag> RESTful </tag>
             
         </tags>
       
@@ -134,31 +136,6 @@
         <tags>
             
             <tag> Java web </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Http协议</title>
-      <link href="/2021/04/07/HTTP%E5%8D%8F%E8%AE%AE/"/>
-      <url>/2021/04/07/HTTP%E5%8D%8F%E8%AE%AE/</url>
-      
-        <content type="html"><![CDATA[<h1 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>HTTP</strong>协议(超文本传输协议HyperText Transfer Protocol)，它是基于TCP协议的应用层传输协议，是客户端和服务端进行数据传输的一种规则。</p><p>HTTP 是一种无状态 (stateless) 协议, HTTP协议本身不会对发送过的请求和相应的通信状态进行持久化处理。这样做的目的是为了保持HTTP协议的简单性，从而能够快速处理大量的事务, 提高效率。</p><p>但是，很多应用场景中，我们需要保持各种状态，如：登录状态等。我们就必须引入一些技术来记录管理状态，例如Cookie。</p><h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><p>在HTTP请求中，包含了请求行，请求头，请求体三个部。</p><p>请求行：由请求Method、URL、HTTP Version三部分构成,<br>总的来说请求行就是定义了本次请求的请求方式, 请求的地址, 以及所遵循的HTTP协议版本</p><p>请求头：由一系列的键值对组成，允许客户端向服务器端发送一些附加信息或者客户端自身的信息</p><p>请求体：在发送POST请求时才会有请求正文，GET方法并没有请求正文。</p><h2 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h2><p>HTTP响应也由三部分组成，包括状态行，消息报头，响应正文。详情如上图所示。</p><p>常见的响应状态码如下：</p><table><thead><tr><th>状态码</th><th>语义</th><th>描述</th></tr></thead><tbody><tr><td>200</td><td>Ok</td><td>请求成功</td></tr><tr><td>301</td><td>Moved Permanently</td><td>永久重定向</td></tr><tr><td>302</td><td>Found</td><td>临时重定向</td></tr><tr><td>404</td><td>Not Found</td><td>页面不存在</td></tr><tr><td>405</td><td>Method Not Allowed</td><td>客户端的请求方法被禁止</td></tr><tr><td>500</td><td>Internal Server Error</td><td>服务器内部错误</td></tr></tbody></table>]]></content>
-      
-      
-      <categories>
-          
-          <category> 前端 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Http </tag>
             
         </tags>
       

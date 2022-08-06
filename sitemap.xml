@@ -182,15 +182,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/2021/04/07/HTTP%E5%8D%8F%E8%AE%AE/</loc>
-    
-    <lastmod>2022-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/2020/05/01/java/day05-Java%E5%85%AB%E5%A4%A7%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B/</loc>
     
     <lastmod>2022-07-03</lastmod>
@@ -272,13 +263,6 @@
 
   
   <url>
-    <loc>http://example.com/tags/Http/</loc>
-    <lastmod>2022-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/Hexo/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -321,20 +305,20 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Springboot%E3%80%81RESTful/</loc>
+    <loc>http://example.com/tags/Springboot/</loc>
+    <lastmod>2022-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/RESTful/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
 
-  
-  <url>
-    <loc>http://example.com/categories/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2022-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
   <url>
     <loc>http://example.com/categories/Java/</loc>
