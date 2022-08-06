@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2022/08/06/springboot/Springboot%EF%BC%88%E4%B8%8A%EF%BC%89/</loc>
-    
-    <lastmod>2022-08-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/2019/02/01/java/day02-Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</loc>
     
     <lastmod>2022-08-06</lastmod>
@@ -21,6 +12,15 @@
   
   <url>
     <loc>http://example.com/2020/04/01/java/day04-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</loc>
+    
+    <lastmod>2022-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2022/08/06/springboot/Springboot%EF%BC%88%E4%B8%8A%EF%BC%89/</loc>
     
     <lastmod>2022-08-06</lastmod>
     
@@ -343,13 +343,6 @@
   
   <url>
     <loc>http://example.com/categories/Java-web/</loc>
-    <lastmod>2022-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/java/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
