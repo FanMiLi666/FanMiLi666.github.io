@@ -1,0 +1,673 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spring注解开发 | 春日迟迟 卉木萋萋</title><meta name="keywords" content="Spring,bean,IoC"><meta name="author" content="Ayo"><meta name="copyright" content="Ayo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常用的一些注解使用它们如何进行快速开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring注解开发">
+<meta property="og:url" content="http://example.com/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="春日迟迟 卉木萋萋">
+<meta property="og:description" content="常用的一些注解使用它们如何进行快速开发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg">
+<meta property="article:published_time" content="2022-08-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-14T06:59:14.799Z">
+<meta property="article:author" content="Ayo">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="bean">
+<meta property="article:tag" content="IoC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Ayo","link":"链接: ","source":"来源: 春日迟迟 卉木萋萋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring注解开发',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-14 14:59:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">春日迟迟 卉木萋萋</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring注解开发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-11T16:00:00.000Z" title="发表于 2022-08-12 00:00:00">2022-08-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-14T06:59:14.799Z" title="更新于 2022-08-14 14:59:14">2022-08-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spring/">Spring</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring注解开发"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>视频资料：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=5&amp;spm_id_from=pageDriver&amp;vd_source=1656d4f8efefd2dc9cca344e8978b19e">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=5&amp;spm_id_from=pageDriver&amp;vd_source=1656d4f8efefd2dc9cca344e8978b19e</a></p>
+<h1 id="1-IOC-x2F-DI注解开发"><a href="#1-IOC-x2F-DI注解开发" class="headerlink" title="1.IOC&#x2F;DI注解开发"></a>1.IOC&#x2F;DI注解开发</h1><p>关于注解开发，我们会讲解两块内容<code>**注解开发定义bean**</code>和<code>**纯注解开发**</code>。</p>
+<h2 id="1-1注解开发定义bean"><a href="#1-1注解开发定义bean" class="headerlink" title="1.1注解开发定义bean"></a>1.1注解开发定义bean</h2><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220812213538118.png" alt="image-20220812213538118"></p>
+<p><strong>Spring提供@Component注解的三个衍生注解（重要）</strong></p>
+<ul>
+<li><strong>@Controller：用于表现层bean定义</strong></li>
+<li><strong>@Service：用于业务层bean定义</strong></li>
+<li><strong>@Repository：用于数据层bean定义</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th align="left"><strong>@Component&#x2F;@Controller&#x2F;@Service&#x2F;@Repository</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>类型</strong></td>
+<td align="left"><strong>类注解</strong></td>
+</tr>
+<tr>
+<td><strong>位置</strong></td>
+<td align="left"><strong>类定义上方</strong></td>
+</tr>
+<tr>
+<td><strong>作用</strong></td>
+<td align="left"><strong>设置该类为spring管理的bean</strong></td>
+</tr>
+<tr>
+<td><strong>属性</strong></td>
+<td align="left"><strong>value（默认）：定义bean的id</strong></td>
+</tr>
+</tbody></table>
+<h2 id="1-2纯注解开发模式（重要）"><a href="#1-2纯注解开发模式（重要）" class="headerlink" title="1.2纯注解开发模式（重要）"></a>1.2纯注解开发模式（重要）</h2><p>上面已经可以使用注解来配置bean,但是依然有用到配置文件，在配置文件中对包进行了扫描，<strong>Spring在3.0版已经支持纯注解开发</strong></p>
+<ul>
+<li>Spring3.0开启了纯注解开发模式，使用Java类替代配置文件，开启了Spring快速开发赛道</li>
+</ul>
+<p><strong>将配置文件applicationContext.xml删除掉，使用类来替换。</strong></p>
+<h5 id="步骤1-创建配置类"><a href="#步骤1-创建配置类" class="headerlink" title="步骤1:创建配置类"></a>步骤1:创建配置类</h5><p>创建一个配置类<code>SpringConfig</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringConfig</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="步骤2-标识该类为配置类"><a href="#步骤2-标识该类为配置类" class="headerlink" title="步骤2:标识该类为配置类"></a>步骤2:标识该类为配置类</h5><p>在配置类上添加<code>@Configuration</code>注解，将其标识为一个配置类,替换<code>applicationContext.xml</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringConfig</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="步骤3-用注解替换包扫描配置"><a href="#步骤3-用注解替换包扫描配置" class="headerlink" title="步骤3:用注解替换包扫描配置"></a>步骤3:用注解替换包扫描配置</h5><p>在配置类上添加包扫描注解**<code>@ComponentScan</code>替换<code>&lt;context:component-scan base-package=&quot;&quot;/&gt;</code>**</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(&quot;com.itheima&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringConfig</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="步骤4-创建运行类并执行"><a href="#步骤4-创建运行类并执行" class="headerlink" title="步骤4:创建运行类并执行"></a>步骤4:创建运行类并执行</h5><p>创建一个新的运行类<code>AppForAnnotation</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppForAnnotation</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(SpringConfig.class);</span><br><span class="line">        <span class="type">BookDao</span> <span class="variable">bookDao</span> <span class="operator">=</span> (BookDao) ctx.getBean(<span class="string">&quot;bookDao&quot;</span>);</span><br><span class="line">        System.out.println(bookDao);</span><br><span class="line">        <span class="type">BookService</span> <span class="variable">bookService</span> <span class="operator">=</span> ctx.getBean(BookService.class);</span><br><span class="line">        System.out.println(bookService);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行AppForAnnotation,可以看到两个对象依然被获取成功</p>
+<p>至此，纯注解开发的方式就已经完成了，主要内容包括:</p>
+<p><strong>总结：****（重要）</strong></p>
+<ul>
+<li><strong>Java类替换Spring核心配置文件</strong></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220812215012193.png" alt=" "></p>
+<ul>
+<li><p>读取Spring核心配置文件初始化容器对象切换为读取Java配置类初始化容器对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载配置文件初始化容器</span></span><br><span class="line"><span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line"><span class="comment">//加载配置类初始化容器</span></span><br><span class="line"><span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(SpringConfig.class);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>以前读配置文件的，现在配置文件没有了，开始读配置类了</strong></p>
+<h4 id="知识点1：-Configuration"><a href="#知识点1：-Configuration" class="headerlink" title="知识点1：@Configuration"></a><strong>知识点1：@Configuration</strong></h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@Configuration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>类注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>类定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置该类为spring配置类</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：定义bean的id</td>
+</tr>
+</tbody></table>
+<h4 id="知识点2：-ComponentScan"><a href="#知识点2：-ComponentScan" class="headerlink" title="知识点2：@ComponentScan"></a><strong>知识点2：@ComponentScan</strong></h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@ComponentScan</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>类注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>类定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置spring配置类扫描路径，用于加载使用注解格式定义的bean</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：扫描路径，此路径可以逐层向下扫描</td>
+</tr>
+</tbody></table>
+<p><strong>总结：</strong></p>
+<ul>
+<li>记住**@Component、@Controller、@Service、@Repository**这四个注解</li>
+<li>applicationContext.xml中<code>&lt;context:component-san/&gt;</code>的作用是指定扫描包路径，注解为@ComponentScan</li>
+<li>@Configuration标识该类为配置类，使用类替换applicationContext.xml文件</li>
+<li>ClassPathXmlApplicationContext是加载XML配置文件</li>
+<li>AnnotationConfigApplicationContext是加载配置类</li>
+</ul>
+<h3 id="1-3-注解开发bean作用范围与生命周期管理"><a href="#1-3-注解开发bean作用范围与生命周期管理" class="headerlink" title="1.3 注解开发bean作用范围与生命周期管理"></a>1.3 注解开发bean作用范围与生命周期管理</h3><h4 id="Bean的作用范围：在其类上添加-scope注解"><a href="#Bean的作用范围：在其类上添加-scope注解" class="headerlink" title="Bean的作用范围：在其类上添加@scope注解"></a>Bean的作用范围：在其类上添加<code>@scope</code>注解</h4><h5 id="知识点1：-Scope"><a href="#知识点1：-Scope" class="headerlink" title="知识点1：@Scope"></a>知识点1：@Scope</h5><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@Scope</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>类注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>类定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置该类创建对象的作用范围<br/>可用于设置创建出的bean是否为单例对象</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：定义bean作用范围，<br/>&#x3D;&#x3D;默认值singleton（单例），可选值prototype（非单例）&#x3D;&#x3D;</td>
+</tr>
+</tbody></table>
+<h4 id="Bean的生命周期管理：只需要在对应的方法上添加-PostConstruct和-PreDestroy注解即可。"><a href="#Bean的生命周期管理：只需要在对应的方法上添加-PostConstruct和-PreDestroy注解即可。" class="headerlink" title="Bean的生命周期管理：只需要在对应的方法上添加@PostConstruct和@PreDestroy注解即可。"></a>Bean的生命周期管理：只需要在对应的方法上添加<code>@PostConstruct</code>和<code>@PreDestroy</code>注解即可。</h4><h5 id="知识点1：-PostConstruct"><a href="#知识点1：-PostConstruct" class="headerlink" title="知识点1：@PostConstruct"></a>知识点1：@PostConstruct</h5><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@PostConstruct</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>方法注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>方法上</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置该方法为初始化方法</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<h5 id="知识点2：-PreDestroy"><a href="#知识点2：-PreDestroy" class="headerlink" title="知识点2：@PreDestroy"></a>知识点2：@PreDestroy</h5><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@PreDestroy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>方法注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>方法上</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置该方法为销毁方法</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<p><strong>小结：（重要牢记理解）</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/1630033039358.png" alt="1630033039358"></p>
+<h3 id="1-4-注解开发依赖注入"><a href="#1-4-注解开发依赖注入" class="headerlink" title="1.4 注解开发依赖注入"></a>1.4 注解开发依赖注入</h3><p>Spring为了使用注解简化开发，并没有提供<code>构造函数注入</code>、<code>setter注入</code>对应的注解，只提供了自动装配的注解实现。</p>
+<h4 id="1-注解实现按照类型注入"><a href="#1-注解实现按照类型注入" class="headerlink" title="1.注解实现按照类型注入"></a>1.注解实现按照类型注入</h4><p><strong>注意:</strong></p>
+<ul>
+<li>@Autowired可以写在属性上，也可也写在setter方法上，最简单的处理方式是<code>写在属性上并将setter方法删除掉</code></li>
+<li>为什么setter方法可以删除呢?<ul>
+<li>自动装配基于反射设计创建对象并通过暴力反射为私有属性进行设值</li>
+<li>普通反射只能获取public修饰的内容</li>
+<li>暴力反射除了获取public修饰的内容还可以获取private修改的内容</li>
+<li>所以此处无需提供setter方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-注解实现按照名称注入"><a href="#2-注解实现按照名称注入" class="headerlink" title="2.注解实现按照名称注入"></a>2.注解实现按照名称注入</h4><p>当根据类型在容器中找到多个bean,注入参数的属性名又和容器中bean的名称不一致，这个时候该如何解决，就需要使用到<code>@Qualifier</code>来指定注入哪个名称的bean对象。</p>
+<h4 id="3-简单数据类型注入"><a href="#3-简单数据类型注入" class="headerlink" title="3.简单数据类型注入"></a>3.简单数据类型注入</h4><p>使用<code>@Value</code>注解，将值写入注解的参数中就行了</p>
+<h4 id="4-注解读取properties配置文件（简单数据类型注入）"><a href="#4-注解读取properties配置文件（简单数据类型注入）" class="headerlink" title="4.注解读取properties配置文件（简单数据类型注入）"></a>4.注解读取properties配置文件（简单数据类型注入）</h4><p><code>@Value</code>一般会被用在从properties配置文件中读取内容进行使用，具体如何实现?</p>
+<h4 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h4><h4 id="知识点1：-Autowired"><a href="#知识点1：-Autowired" class="headerlink" title="知识点1：@Autowired"></a>知识点1：@Autowired</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@Autowired</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>属性注解  或  方法注解（了解）  或  方法形参注解（了解）</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>属性定义上方  或  标准set方法上方  或  类set方法上方  或  方法形参前面</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>为引用类型属性设置值</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>required：true&#x2F;false，定义该属性是否允许为null</td>
+</tr>
+</tbody></table>
+<h4 id="知识点2：-Qualifier"><a href="#知识点2：-Qualifier" class="headerlink" title="知识点2：@Qualifier"></a>知识点2：@Qualifier</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@Qualifier</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>属性注解  或  方法注解（了解）</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>属性定义上方  或  标准set方法上方  或  类set方法上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>为引用类型属性指定注入的beanId</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：设置注入的beanId</td>
+</tr>
+</tbody></table>
+<h4 id="知识点3：-Value"><a href="#知识点3：-Value" class="headerlink" title="知识点3：@Value"></a>知识点3：@Value</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>属性注解  或  方法注解（了解）</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>属性定义上方  或  标准set方法上方  或  类set方法上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>为  基本数据类型  或  字符串类型  属性设置值</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：要注入的属性值</td>
+</tr>
+</tbody></table>
+<h4 id="知识点4：-PropertySource"><a href="#知识点4：-PropertySource" class="headerlink" title="知识点4：@PropertySource"></a>知识点4：@PropertySource</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@PropertySource</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>类注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>类定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>加载properties文件中的属性值</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：设置加载的properties文件对应的文件名或文件名组成的数组</td>
+</tr>
+</tbody></table>
+<h1 id="2-IOC-x2F-DI注解开发管理第三方bean"><a href="#2-IOC-x2F-DI注解开发管理第三方bean" class="headerlink" title="2.IOC&#x2F;DI注解开发管理第三方bean"></a>2.IOC&#x2F;DI注解开发管理第三方bean</h1><p>前面定义bean的时候都是在自己开发的类上面写个注解就完成了，但如果是第三方的类，这些类都是在jar包中，我们没有办法在类上面添加注解，这个时候该怎么办?</p>
+<p>遇到上述问题，我们就需要有一种更加灵活的方式来定义bean,这种方式不能在原始代码上面书写注解，一样能定义bean,这就用到了一个全新的注解&#x3D;&#x3D;<strong>@Bean</strong>&#x3D;&#x3D;。</p>
+<h3 id="知识点1：-Bean"><a href="#知识点1：-Bean" class="headerlink" title="知识点1：@Bean"></a>知识点1：@Bean</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@Bean</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>方法注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>方法定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置该方法的返回值作为spring管理的bean</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：定义bean的id</td>
+</tr>
+</tbody></table>
+<h3 id="知识点2：-Import"><a href="#知识点2：-Import" class="headerlink" title="知识点2：@Import"></a>知识点2：@Import</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@Import</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>类注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>类定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>导入配置类</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：定义导入的配置类类名，<br/>当配置类有多个时使用数组格式一次性导入多个配置类</td>
+</tr>
+</tbody></table>
+<h1 id="5-注解开发总结（重要）"><a href="#5-注解开发总结（重要）" class="headerlink" title="5.注解开发总结（重要）"></a>5.注解开发总结（重要）</h1><p>前面我们已经完成了XML配置和注解的开发实现，至于两者之间的差异，咱们放在一块去对比回顾下:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/1630134786448.png" alt="1630134786448"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="6-单元测试类注解"><a href="#6-单元测试类注解" class="headerlink" title="6.单元测试类注解"></a>6.单元测试类注解</h1><p><strong>注意:</strong></p>
+<ul>
+<li>单元测试，如果测试的是注解配置类，则使用<code>@ContextConfiguration(classes = 配置类.class)</code></li>
+<li>单元测试，如果测试的是配置文件，则使用<code>@ContextConfiguration(locations=&#123;配置文件名,...&#125;)</code></li>
+<li>Junit运行后是基于Spring环境运行的，所以Spring提供了一个专用的类运行器，这个务必要设置，这个类运行器就在Spring的测试专用包中提供的，导入的坐标就是这个东西<code>SpringJUnit4ClassRunner</code></li>
+<li>上面两个配置都是固定格式，当需要测试哪个bean时，使用自动装配加载对应的对象，下面的工作就和以前做Junit单元测试完全一样了</li>
+</ul>
+<h4 id="知识点1：-RunWith"><a href="#知识点1：-RunWith" class="headerlink" title="知识点1：@RunWith"></a>知识点1：@RunWith</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@RunWith</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>测试类注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>测试类定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置JUnit运行器</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>value（默认）：运行所使用的运行期</td>
+</tr>
+</tbody></table>
+<h4 id="知识点2：-ContextConfiguration"><a href="#知识点2：-ContextConfiguration" class="headerlink" title="知识点2：@ContextConfiguration"></a>知识点2：@ContextConfiguration</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>@ContextConfiguration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>测试类注解</td>
+</tr>
+<tr>
+<td>位置</td>
+<td>测试类定义上方</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>设置JUnit加载的Spring核心配置</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>classes：核心配置类，可以使用数组的格式设定加载多个配置类<br/>locations:配置文件，可以使用数组的格式设定加载多个配置文件名称</td>
+</tr>
+</tbody></table>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring/">Spring</a><a class="post-meta__tags" href="/tags/bean/">bean</a><a class="post-meta__tags" href="/tags/IoC/">IoC</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/"><img class="next-cover" src="https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring中DI以及核心容器相关</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/" title="Spring框架的主要内容"><img class="cover" src="https://cdn.pixabay.com/photo/2022/07/25/16/41/child-7344169__480.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-10</div><div class="title">Spring框架的主要内容</div></div></a></div><div><a href="/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/" title="Spring中DI以及核心容器相关"><img class="cover" src="https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-11</div><div class="title">Spring中DI以及核心容器相关</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjY3OC8zMzE0Mg=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ayo</div><div class="author-info__description">coding就是生产力</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FanMiLi666"><i class="fab fa-github"></i><span>codeing中</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FanMiLi666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/FamilyOver?spm=1000.2115.3001.5343" target="_blank" title="csdn"><i class="fas fa-solid fa-c"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">每个优秀的人，都有一段沉默的时光。那段时光，是付出了很多努力，却得不到结果的日子，我们把它叫做扎根！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-IOC-x2F-DI%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91"><span class="toc-number">1.</span> <span class="toc-text">1.IOC&#x2F;DI注解开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E5%AE%9A%E4%B9%89bean"><span class="toc-number">1.1.</span> <span class="toc-text">1.1注解开发定义bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E7%BA%AF%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">1.2纯注解开发模式（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A41-%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="toc-number">1.2.0.0.1.</span> <span class="toc-text">步骤1:创建配置类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A42-%E6%A0%87%E8%AF%86%E8%AF%A5%E7%B1%BB%E4%B8%BA%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="toc-number">1.2.0.0.2.</span> <span class="toc-text">步骤2:标识该类为配置类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A43-%E7%94%A8%E6%B3%A8%E8%A7%A3%E6%9B%BF%E6%8D%A2%E5%8C%85%E6%89%AB%E6%8F%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.0.0.3.</span> <span class="toc-text">步骤3:用注解替换包扫描配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A44-%E5%88%9B%E5%BB%BA%E8%BF%90%E8%A1%8C%E7%B1%BB%E5%B9%B6%E6%89%A7%E8%A1%8C"><span class="toc-number">1.2.0.0.4.</span> <span class="toc-text">步骤4:创建运行类并执行</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B91%EF%BC%9A-Configuration"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">知识点1：@Configuration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B92%EF%BC%9A-ComponentScan"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">知识点2：@ComponentScan</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91bean%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.3 注解开发bean作用范围与生命周期管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4%EF%BC%9A%E5%9C%A8%E5%85%B6%E7%B1%BB%E4%B8%8A%E6%B7%BB%E5%8A%A0-scope%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">Bean的作用范围：在其类上添加@scope注解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B91%EF%BC%9A-Scope"><span class="toc-number">1.2.1.1.1.</span> <span class="toc-text">知识点1：@Scope</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86%EF%BC%9A%E5%8F%AA%E9%9C%80%E8%A6%81%E5%9C%A8%E5%AF%B9%E5%BA%94%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%8A%E6%B7%BB%E5%8A%A0-PostConstruct%E5%92%8C-PreDestroy%E6%B3%A8%E8%A7%A3%E5%8D%B3%E5%8F%AF%E3%80%82"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Bean的生命周期管理：只需要在对应的方法上添加@PostConstruct和@PreDestroy注解即可。</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B91%EF%BC%9A-PostConstruct"><span class="toc-number">1.2.1.2.1.</span> <span class="toc-text">知识点1：@PostConstruct</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B92%EF%BC%9A-PreDestroy"><span class="toc-number">1.2.1.2.2.</span> <span class="toc-text">知识点2：@PreDestroy</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.4 注解开发依赖注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E6%8C%89%E7%85%A7%E7%B1%BB%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1.注解实现按照类型注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E6%8C%89%E7%85%A7%E5%90%8D%E7%A7%B0%E6%B3%A8%E5%85%A5"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.注解实现按照名称注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">3.简单数据类型注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%B3%A8%E8%A7%A3%E8%AF%BB%E5%8F%96properties%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%88%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">4.注解读取properties配置文件（简单数据类型注入）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">5.总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B91%EF%BC%9A-Autowired"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">知识点1：@Autowired</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B92%EF%BC%9A-Qualifier"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">知识点2：@Qualifier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B93%EF%BC%9A-Value"><span class="toc-number">1.2.2.8.</span> <span class="toc-text">知识点3：@Value</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B94%EF%BC%9A-PropertySource"><span class="toc-number">1.2.2.9.</span> <span class="toc-text">知识点4：@PropertySource</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-IOC-x2F-DI%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E7%AE%A1%E7%90%86%E7%AC%AC%E4%B8%89%E6%96%B9bean"><span class="toc-number">2.</span> <span class="toc-text">2.IOC&#x2F;DI注解开发管理第三方bean</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B91%EF%BC%9A-Bean"><span class="toc-number">2.0.1.</span> <span class="toc-text">知识点1：@Bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B92%EF%BC%9A-Import"><span class="toc-number">2.0.2.</span> <span class="toc-text">知识点2：@Import</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">5.注解开发总结（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">3.1.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%B1%BB%E6%B3%A8%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">6.单元测试类注解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B91%EF%BC%9A-RunWith"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">知识点1：@RunWith</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B92%EF%BC%9A-ContextConfiguration"><span class="toc-number">4.0.0.2.</span> <span class="toc-text">知识点2：@ContextConfiguration</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" title="Spring注解开发"><img src="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring注解开发"/></a><div class="content"><a class="title" href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" title="Spring注解开发">Spring注解开发</a><time datetime="2022-08-11T16:00:00.000Z" title="发表于 2022-08-12 00:00:00">2022-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/" title="Spring中DI以及核心容器相关"><img src="https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring中DI以及核心容器相关"/></a><div class="content"><a class="title" href="/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/" title="Spring中DI以及核心容器相关">Spring中DI以及核心容器相关</a><time datetime="2022-08-10T16:00:00.000Z" title="发表于 2022-08-11 00:00:00">2022-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/" title="Spring框架的主要内容"><img src="https://cdn.pixabay.com/photo/2022/07/25/16/41/child-7344169__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring框架的主要内容"/></a><div class="content"><a class="title" href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/" title="Spring框架的主要内容">Spring框架的主要内容</a><time datetime="2022-08-09T16:00:00.000Z" title="发表于 2022-08-10 00:00:00">2022-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/" title="基于SpringBoot如何整合三方"><img src="https://cdn.pixabay.com/photo/2022/07/10/19/30/house-7313645__340.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于SpringBoot如何整合三方"/></a><div class="content"><a class="title" href="/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/" title="基于SpringBoot如何整合三方">基于SpringBoot如何整合三方</a><time datetime="2022-08-09T16:00:00.000Z" title="发表于 2022-08-10 00:00:00">2022-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/07/springboot/Springboot%E4%B8%AD%E7%9A%84yaml%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F/" title="Springboot中的yaml语法格式以及读取数据"><img src="https://cdn.pixabay.com/photo/2022/07/19/10/35/puppies-7331739__340.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Springboot中的yaml语法格式以及读取数据"/></a><div class="content"><a class="title" href="/2022/08/07/springboot/Springboot%E4%B8%AD%E7%9A%84yaml%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F/" title="Springboot中的yaml语法格式以及读取数据">Springboot中的yaml语法格式以及读取数据</a><time datetime="2022-08-06T16:00:00.000Z" title="发表于 2022-08-07 00:00:00">2022-08-07</time></div></div></div></div></div></div></main><footer id="footer" style="background: fales"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Ayo</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">很高兴认识你😄</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

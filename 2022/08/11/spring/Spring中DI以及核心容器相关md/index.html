@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spring中DI以及核心容器相关 | 春日迟迟 卉木萋萋</title><meta name="keywords" content="Spring,bean,IoC"><meta name="author" content="Ayo"><meta name="copyright" content="Ayo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Spring注入方式、核心容器、如何获取bean">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring中DI以及核心容器相关">
+<meta property="og:url" content="http://example.com/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/index.html">
+<meta property="og:site_name" content="春日迟迟 卉木萋萋">
+<meta property="og:description" content="Spring注入方式、核心容器、如何获取bean">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg">
+<meta property="article:published_time" content="2022-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-14T06:59:14.798Z">
+<meta property="article:author" content="Ayo">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="bean">
+<meta property="article:tag" content="IoC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Ayo","link":"链接: ","source":"来源: 春日迟迟 卉木萋萋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring中DI以及核心容器相关',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-14 14:59:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">春日迟迟 卉木萋萋</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring中DI以及核心容器相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-10T16:00:00.000Z" title="发表于 2022-08-11 00:00:00">2022-08-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-14T06:59:14.798Z" title="更新于 2022-08-14 14:59:14">2022-08-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spring/">Spring</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring中DI以及核心容器相关"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>视频资料：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=5&amp;spm_id_from=pageDriver&amp;vd_source=1656d4f8efefd2dc9cca344e8978b19e">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=5&amp;spm_id_from=pageDriver&amp;vd_source=1656d4f8efefd2dc9cca344e8978b19e</a></p>
+<h1 id="1-DI相关内容（知道就好）"><a href="#1-DI相关内容（知道就好）" class="headerlink" title="1.DI相关内容（知道就好）"></a>1.DI相关内容（知道就好）</h1><p>我们先来思考</p>
+<ul>
+<li>向一个类中传递数据的方式有几种?<ul>
+<li><strong>普通方法(set方法)</strong></li>
+<li><strong>构造方法</strong></li>
+</ul>
+</li>
+<li>依赖注入描述了在容器中建立bean与bean之间的依赖关系的过程，如果bean运行需要的是数字或字符串呢?<ul>
+<li>引用类型</li>
+<li>简单类型(基本数据类型与String)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Spring就是基于上面这些知识点，为我们提供了两种注入方式，分别是:（重要）</strong></p>
+<ul>
+<li>setter注入<ul>
+<li>简单类型</li>
+<li>&#x3D;&#x3D;引用类型&#x3D;&#x3D;</li>
+</ul>
+</li>
+<li>构造器注入<ul>
+<li>简单类型</li>
+<li>引用类型</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-1setter注入"><a href="#1-1setter注入" class="headerlink" title="1.1setter注入"></a>1.1setter注入</h2><ol>
+<li>对于setter方式注入引用类型的方式之前已经学习过，快速回顾下:</li>
+</ol>
+<ul>
+<li>在bean中定义引用类型属性，并提供可访问的&#x3D;&#x3D;set&#x3D;&#x3D;方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">BookService</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> BookDao bookDao;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setBookDao</span><span class="params">(BookDao bookDao)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.bookDao = bookDao;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置中使用&#x3D;&#x3D;property&#x3D;&#x3D;标签&#x3D;&#x3D;ref&#x3D;&#x3D;属性注入引用类型对象</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;bookService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.itheima.service.impl.BookServiceImpl&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;bookDao&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;bookDao&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;bookDao&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.itheima.dao.imipl.BookDaoImpl&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2构造器注入"><a href="#1-2构造器注入" class="headerlink" title="1.2构造器注入"></a>1.2构造器注入</h2><p>构造器注入也就是构造方法注入</p>
+<p>在类中，可以不用为属性设置setter方法，但是必须要生成该类带参数的构造方法。</p>
+<p>在配置文件中配置该类的bean，并配置构造器，在配置构造器中用到 <constructor-arg> 节点。</p>
+<p><strong>constructor-arg</strong>标签属性：</p>
+<p><strong>name属性</strong>：通过参数名找到参数列表中对应参数；</p>
+<p><strong>index属性</strong>：通过参数在参数列表中的索引找到参数列表中对应参数，index从0开始；</p>
+<p><strong>type属性</strong>：通过参数数据类型找到参数列表中对应参数；</p>
+<p><strong>value属性</strong>：设置参数列表参数对应的值，用于设定基本数据类型和String类型的数据；</p>
+<p><strong>ref属性</strong>：如果参数值为非基本数据类型，则可通过ref为参数注入值，其值为另一个bean标签id或name</p>
+<p><strong>介绍完两种参数的注入方式，具体我们该如何选择呢?</strong></p>
+<ol>
+<li>强制依赖使用构造器进行，使用setter注入有概率不进行注入导致null对象出现<ul>
+<li>强制依赖指对象在创建的过程中必须要注入指定的参数</li>
+</ul>
+</li>
+<li>可选依赖使用setter注入进行，灵活性强<ul>
+<li>可选依赖指对象在创建过程中注入的参数可有可无</li>
+</ul>
+</li>
+<li>Spring框架倡导使用构造器，第三方框架内部大多数采用构造器注入的形式进行数据初始化，相对严谨</li>
+<li>如果有必要可以两者同时使用，使用构造器注入完成强制依赖的注入，使用setter注入完成可选依赖的注入</li>
+<li>实际开发过程中还要根据实际情况分析，如果受控对象没有提供setter方法就必须使用构造器注入</li>
+<li><strong>&#x3D;&#x3D;自己开发的模块推荐使用setter注入&#x3D;&#x3D;</strong></li>
+</ol>
+<h2 id="1-3总结：两种Spring的依赖注入的实现方式"><a href="#1-3总结：两种Spring的依赖注入的实现方式" class="headerlink" title="1.3总结：两种Spring的依赖注入的实现方式:"></a>1.3总结：两种Spring的依赖注入的实现方式:</h2><ul>
+<li><p>setter注入</p>
+<ul>
+<li><p>简单数据类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用数据类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>构造器注入</p>
+<ul>
+<li><p>简单数据类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">index</span>=<span class="string">&quot;&quot;</span> <span class="attr">type</span>=<span class="string">&quot;&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用数据类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">index</span>=<span class="string">&quot;&quot;</span> <span class="attr">type</span>=<span class="string">&quot;&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>依赖注入的方式选择上</p>
+<ul>
+<li>建议使用setter注入</li>
+<li>第三方技术根据情况选择</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-自动配置"><a href="#2-自动配置" class="headerlink" title="2.自动配置"></a>2.自动配置</h1><p>前面花了大量的时间把Spring的注入去学习了下，总结起来就一个字&#x3D;&#x3D;麻烦&#x3D;&#x3D;。</p>
+<p>问:麻烦在哪?</p>
+<p>答:配置文件的编写配置上。</p>
+<p>问:有更简单方式么?</p>
+<p>答:有，自动配置</p>
+<p>什么是自动配置以及如何实现自动配置，就是接下来要学习的内容：</p>
+<h2 id="2-1什么是依赖自动装配"><a href="#2-1什么是依赖自动装配" class="headerlink" title="2.1什么是依赖自动装配?"></a>2.1什么是依赖自动装配?</h2><p>IoC容器根据bean所依赖的资源在容器中自动查找并注入到bean中的过程称为自动装配</p>
+<h2 id="2-2自动装配方式有哪些"><a href="#2-2自动装配方式有哪些" class="headerlink" title="2.2自动装配方式有哪些?"></a>2.2自动装配方式有哪些?</h2><ul>
+<li>&#x3D;&#x3D;按类型（常用）&#x3D;&#x3D;</li>
+<li>按名称</li>
+<li>按构造方法</li>
+<li>不启用自动装配</li>
+</ul>
+<h2 id="2-3完成自动装配的配置（autowire）"><a href="#2-3完成自动装配的配置（autowire）" class="headerlink" title="2.3完成自动装配的配置（autowire）"></a>2.3完成自动装配的配置（autowire）</h2><p>接下来，在上面这个环境中来完成<code>自动装配</code>的学习:</p>
+<p>自动装配只需要修改applicationContext.xml配置文件即可:</p>
+<p>(1)将<code>&lt;property&gt;</code>标签删除</p>
+<p>(2)在<code>&lt;bean&gt;</code>标签中添加autowire属性</p>
+<p>首先来实现按照类型注入的配置</p>
+<p>&#x3D;&#x3D;注意事项:&#x3D;&#x3D;</p>
+<ul>
+<li>需要注入属性的类中对应属性的setter方法不能省略</li>
+<li>被注入的对象必须要被Spring的IOC容器管理</li>
+<li>按照类型在Spring的IOC容器中如果找到多个对象，会报<code>NoUniqueBeanDefinitionException</code></li>
+</ul>
+<p>&#x3D;&#x3D;注意事项:&#x3D;&#x3D;</p>
+<ul>
+<li><p>按照名称注入中的名称指的是什么?</p>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/1629806856156.png" alt="1629806856156"></p>
+<ul>
+<li>bookDao是private修饰的，外部类无法直接方法</li>
+<li>外部类只能通过属性的set方法进行访问</li>
+<li>对外部类来说，setBookDao方法名，去掉set后首字母小写是其属性名<ul>
+<li>为什么是去掉set首字母小写?</li>
+<li>这个规则是set方法生成的默认规则，set方法的生成是把属性名首字母大写前面加set形成的方法名</li>
+</ul>
+</li>
+<li>所以按照名称注入，其实是和对应的set方法有关，但是如果按照标准起名称，属性名和set对应的名是一致的</li>
+</ul>
+</li>
+<li><p>如果按照名称去找对应的bean对象，找不到则注入Null</p>
+</li>
+<li><p>当某一个类型在IOC容器中有多个对象，按照名称注入只找其指定名称对应的bean对象，不会报错</p>
+</li>
+</ul>
+<p>两种方式介绍完后，以后用的更多的是&#x3D;&#x3D;按照类型&#x3D;&#x3D;注入。</p>
+<p>最后对于依赖注入，需要注意一些其他的配置特征:</p>
+<ol>
+<li>自动装配用于引用类型依赖注入，不能对简单类型进行操作</li>
+<li>使用按类型装配时（byType）必须保障容器中相同类型的bean唯一，推荐使用</li>
+<li>使用按名称装配时（byName）必须保障容器中具有指定名称的bean，因变量名与配置耦合，不推荐使用</li>
+<li>自动装配优先级低于setter注入与构造器注入，同时出现时自动装配配置失效</li>
+</ol>
+<h2 id="2-4集合注入"><a href="#2-4集合注入" class="headerlink" title="2.4集合注入"></a>2.4集合注入</h2><p>前面我们已经能完成引入数据类型和简单数据类型的注入，但是还有一种数据类型&#x3D;&#x3D;集合&#x3D;&#x3D;，集合中既可以装简单数据类型也可以装引用数据类型，对于集合，在Spring中该如何注入呢?</p>
+<p>先来回顾下，常见的集合类型有哪些?</p>
+<ul>
+<li>数组</li>
+<li>List</li>
+<li>Set</li>
+<li>Map</li>
+<li>Properties</li>
+</ul>
+<p>针对不同的集合类型，该如何实现注入呢?</p>
+<h4 id="注入数组类型数据"><a href="#注入数组类型数据" class="headerlink" title="注入数组类型数据"></a>注入数组类型数据</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;array&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>100<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>200<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>300<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注入List类型数据"><a href="#注入List类型数据" class="headerlink" title="注入List类型数据"></a>注入List类型数据</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;list&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>itcast<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>itheima<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>boxuegu<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>chuanzhihui<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注入Set类型数据"><a href="#注入Set类型数据" class="headerlink" title="注入Set类型数据"></a>注入Set类型数据</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;set&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>itcast<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>itheima<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>boxuegu<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>boxuegu<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注入Map类型数据"><a href="#注入Map类型数据" class="headerlink" title="注入Map类型数据"></a>注入Map类型数据</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;map&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;country&quot;</span> <span class="attr">value</span>=<span class="string">&quot;china&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;province&quot;</span> <span class="attr">value</span>=<span class="string">&quot;henan&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;kaifeng&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注入Properties类型数据"><a href="#注入Properties类型数据" class="headerlink" title="注入Properties类型数据"></a>注入Properties类型数据</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;properties&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;country&quot;</span>&gt;</span>china<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;province&quot;</span>&gt;</span>henan<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;city&quot;</span>&gt;</span>kaifeng<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>说明：</strong></p>
+<ul>
+<li>property标签表示setter方式注入，构造方式注入constructor-arg标签内部也可以写<code>&lt;array&gt;</code>、<code>&lt;list&gt;</code>、<code>&lt;set&gt;</code>、<code>&lt;map&gt;</code>、<code>&lt;props&gt;</code>标签</li>
+<li>List的底层也是通过数组实现的，所以<code>&lt;list&gt;</code>和<code>&lt;array&gt;</code>标签是可以混用</li>
+<li>集合中要添加引用类型，只需要把<code>&lt;value&gt;</code>标签改成<code>&lt;ref&gt;</code>标签，这种方式用的比较少</li>
+</ul>
+<hr>
+<h1 id="3-IOC容器中的-x3D-x3D-核心容器-x3D-x3D-。"><a href="#3-IOC容器中的-x3D-x3D-核心容器-x3D-x3D-。" class="headerlink" title="3.IOC容器中的&#x3D;&#x3D;核心容器&#x3D;&#x3D;。"></a>3.IOC容器中的&#x3D;&#x3D;核心容器&#x3D;&#x3D;。</h1><p>本节四个知识点：</p>
+<ul>
+<li><strong>创建容器</strong></li>
+<li><strong>获取bean</strong></li>
+<li><strong>容器类的层次结构</strong></li>
+<li><strong>BeanFactory</strong></li>
+</ul>
+<h2 id="3-1创建容器（了解就好）"><a href="#3-1创建容器（了解就好）" class="headerlink" title="3.1创建容器（了解就好）"></a>3.1<strong>创建容器</strong>（了解就好）</h2><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220812211450158.png" alt="image-20220812211450158"></p>
+<p><strong>总结：</strong></p>
+<ul>
+<li><strong>ClassPathXmlApplicationContext[掌握]</strong></li>
+<li><strong>FileSystemXmlApplicationContext[文件系统：知道即可]</strong></li>
+</ul>
+<h2 id="3-2-获取bean"><a href="#3-2-获取bean" class="headerlink" title="3.2.获取bean"></a>3.2.获取bean</h2><p>方式一，就是目前案例中获取的方式:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BookDao</span> <span class="variable">bookDao</span> <span class="operator">=</span> (BookDao) ctx.getBean(<span class="string">&quot;bookDao&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这种方式存在的问题是每次获取的时候都需要进行类型转换，有没有更简单的方式呢?</p>
+<p>方式二：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BookDao bookDao = ctx.getBean(&quot;bookDao&quot;，BookDao.class);</span><br></pre></td></tr></table></figure>
+
+<p>这种方式可以解决类型强转问题，但是参数又多加了一个，相对来说没有简化多少。</p>
+<p>方式三:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BookDao bookDao = ctx.getBean(BookDao.class);</span><br></pre></td></tr></table></figure>
+
+<p>这种方式就类似我们之前所学习依赖注入中的按类型注入。必须要确保IOC容器中该类型对应的bean对象只能有一个。</p>
+<p><strong>总结：</strong></p>
+<ul>
+<li><strong>getBean(“名称”):需要类型转换</strong></li>
+<li><strong>getBean(“名称”,类型.class):多了一个参数</strong></li>
+<li><strong>getBean(类型.class):容器中不能有多个该类的bean对象</strong></li>
+</ul>
+<p>上述三种方式，各有各的优缺点，用哪个都可以。</p>
+<h2 id="3-3-容器类的层次结构"><a href="#3-3-容器类的层次结构" class="headerlink" title="3.3.容器类的层次结构"></a>3.3.容器类的层次结构</h2><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220812211922367.png" alt="image-20220812211922367"></p>
+<p> <strong>只需要知晓容器的最上级的父接口为 BeanFactory即可</strong></p>
+<h2 id="3-4-BeanFactory"><a href="#3-4-BeanFactory" class="headerlink" title="3.4.BeanFactory"></a>3.4.BeanFactory</h2><p><strong>总结</strong></p>
+<ul>
+<li><strong>使用BeanFactory创建的容器是延迟加载</strong></li>
+<li><strong>使用ApplicationContext创建的容器是立即加载</strong></li>
+<li><strong>具体BeanFactory如何创建只需要了解即可。</strong></li>
+</ul>
+<h1 id="4-核心容器总结"><a href="#4-核心容器总结" class="headerlink" title="4.核心容器总结"></a>4.核心容器总结</h1><h2 id="4-1容器相关"><a href="#4-1容器相关" class="headerlink" title="4.1容器相关"></a>4.1容器相关</h2><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220812212231194.png" alt="image-20220812212231194"></p>
+<h2 id="4-2bean相关"><a href="#4-2bean相关" class="headerlink" title="4.2bean相关"></a>4.2bean相关</h2><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220812212351418.png" alt="image-20220812212351418"></p>
+<p>其实整个配置中最常用的就两个属性**&#x3D;&#x3D;id&#x3D;&#x3D;和&#x3D;&#x3D;class&#x3D;&#x3D;**。</p>
+<p>把scope、init-method、destroy-method框起来的原因是，后面注解在讲解的时候还会用到，所以大家对这三个属性关注下。</p>
+<h2 id="4-3依赖注入相关（用到较少）"><a href="#4-3依赖注入相关（用到较少）" class="headerlink" title="4.3依赖注入相关（用到较少）"></a>4.3依赖注入相关（用到较少）</h2><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220812212502781.png" alt="image-20220812212502781"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring/">Spring</a><a class="post-meta__tags" href="/tags/bean/">bean</a><a class="post-meta__tags" href="/tags/IoC/">IoC</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/"><img class="prev-cover" src="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Spring注解开发</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/"><img class="next-cover" src="https://cdn.pixabay.com/photo/2022/07/25/16/41/child-7344169__480.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring框架的主要内容</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" title="Spring注解开发"><img class="cover" src="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-12</div><div class="title">Spring注解开发</div></div></a></div><div><a href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/" title="Spring框架的主要内容"><img class="cover" src="https://cdn.pixabay.com/photo/2022/07/25/16/41/child-7344169__480.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-10</div><div class="title">Spring框架的主要内容</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjY3OC8zMzE0Mg=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ayo</div><div class="author-info__description">coding就是生产力</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FanMiLi666"><i class="fab fa-github"></i><span>codeing中</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FanMiLi666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/FamilyOver?spm=1000.2115.3001.5343" target="_blank" title="csdn"><i class="fas fa-solid fa-c"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">每个优秀的人，都有一段沉默的时光。那段时光，是付出了很多努力，却得不到结果的日子，我们把它叫做扎根！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-DI%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%EF%BC%88%E7%9F%A5%E9%81%93%E5%B0%B1%E5%A5%BD%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">1.DI相关内容（知道就好）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1setter%E6%B3%A8%E5%85%A5"><span class="toc-number">1.1.</span> <span class="toc-text">1.1setter注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E6%9E%84%E9%80%A0%E5%99%A8%E6%B3%A8%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text">1.2构造器注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E6%80%BB%E7%BB%93%EF%BC%9A%E4%B8%A4%E7%A7%8DSpring%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">1.3总结：两种Spring的依赖注入的实现方式:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">2.自动配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E4%BB%80%E4%B9%88%E6%98%AF%E4%BE%9D%E8%B5%96%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">2.1.</span> <span class="toc-text">2.1什么是依赖自动装配?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-number">2.2.</span> <span class="toc-text">2.2自动装配方式有哪些?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E5%AE%8C%E6%88%90%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%88autowire%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">2.3完成自动装配的配置（autowire）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4%E9%9B%86%E5%90%88%E6%B3%A8%E5%85%A5"><span class="toc-number">2.4.</span> <span class="toc-text">2.4集合注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="toc-number">2.4.0.1.</span> <span class="toc-text">注入数组类型数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5List%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="toc-number">2.4.0.2.</span> <span class="toc-text">注入List类型数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5Set%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="toc-number">2.4.0.3.</span> <span class="toc-text">注入Set类型数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5Map%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="toc-number">2.4.0.4.</span> <span class="toc-text">注入Map类型数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5Properties%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="toc-number">2.4.0.5.</span> <span class="toc-text">注入Properties类型数据</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-IOC%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84-x3D-x3D-%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8-x3D-x3D-%E3%80%82"><span class="toc-number">3.</span> <span class="toc-text">3.IOC容器中的&#x3D;&#x3D;核心容器&#x3D;&#x3D;。</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8%EF%BC%88%E4%BA%86%E8%A7%A3%E5%B0%B1%E5%A5%BD%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">3.1创建容器（了解就好）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E8%8E%B7%E5%8F%96bean"><span class="toc-number">3.2.</span> <span class="toc-text">3.2.获取bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%AE%B9%E5%99%A8%E7%B1%BB%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">3.3.</span> <span class="toc-text">3.3.容器类的层次结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-BeanFactory"><span class="toc-number">3.4.</span> <span class="toc-text">3.4.BeanFactory</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">4.核心容器总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3"><span class="toc-number">4.1.</span> <span class="toc-text">4.1容器相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2bean%E7%9B%B8%E5%85%B3"><span class="toc-number">4.2.</span> <span class="toc-text">4.2bean相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3%EF%BC%88%E7%94%A8%E5%88%B0%E8%BE%83%E5%B0%91%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">4.3依赖注入相关（用到较少）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" title="Spring注解开发"><img src="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring注解开发"/></a><div class="content"><a class="title" href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" title="Spring注解开发">Spring注解开发</a><time datetime="2022-08-11T16:00:00.000Z" title="发表于 2022-08-12 00:00:00">2022-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/" title="Spring中DI以及核心容器相关"><img src="https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring中DI以及核心容器相关"/></a><div class="content"><a class="title" href="/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/" title="Spring中DI以及核心容器相关">Spring中DI以及核心容器相关</a><time datetime="2022-08-10T16:00:00.000Z" title="发表于 2022-08-11 00:00:00">2022-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/" title="Spring框架的主要内容"><img src="https://cdn.pixabay.com/photo/2022/07/25/16/41/child-7344169__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring框架的主要内容"/></a><div class="content"><a class="title" href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/" title="Spring框架的主要内容">Spring框架的主要内容</a><time datetime="2022-08-09T16:00:00.000Z" title="发表于 2022-08-10 00:00:00">2022-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/" title="基于SpringBoot如何整合三方"><img src="https://cdn.pixabay.com/photo/2022/07/10/19/30/house-7313645__340.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于SpringBoot如何整合三方"/></a><div class="content"><a class="title" href="/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/" title="基于SpringBoot如何整合三方">基于SpringBoot如何整合三方</a><time datetime="2022-08-09T16:00:00.000Z" title="发表于 2022-08-10 00:00:00">2022-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/07/springboot/Springboot%E4%B8%AD%E7%9A%84yaml%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F/" title="Springboot中的yaml语法格式以及读取数据"><img src="https://cdn.pixabay.com/photo/2022/07/19/10/35/puppies-7331739__340.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Springboot中的yaml语法格式以及读取数据"/></a><div class="content"><a class="title" href="/2022/08/07/springboot/Springboot%E4%B8%AD%E7%9A%84yaml%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F/" title="Springboot中的yaml语法格式以及读取数据">Springboot中的yaml语法格式以及读取数据</a><time datetime="2022-08-06T16:00:00.000Z" title="发表于 2022-08-07 00:00:00">2022-08-07</time></div></div></div></div></div></div></main><footer id="footer" style="background: fales"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Ayo</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">很高兴认识你😄</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
