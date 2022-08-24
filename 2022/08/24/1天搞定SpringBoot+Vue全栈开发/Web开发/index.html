@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Springboot中的web开发 | 春日迟迟 卉木萋萋</title><meta name="keywords" content="Springboot,Controller,Web,Interceptor"><meta name="author" content="Ayo"><meta name="copyright" content="Ayo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Springboot中Controller和Springboot文件上传+拦截器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot中的web开发">
+<meta property="og:url" content="http://example.com/2022/08/24/1%E5%A4%A9%E6%90%9E%E5%AE%9ASpringBoot+Vue%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/Web%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="春日迟迟 卉木萋萋">
+<meta property="og:description" content="Springboot中Controller和Springboot文件上传+拦截器">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2022/07/17/15/03/birds-7327611__480.jpg">
+<meta property="article:published_time" content="2022-08-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-24T10:22:16.506Z">
+<meta property="article:author" content="Ayo">
+<meta property="article:tag" content="Springboot">
+<meta property="article:tag" content="Controller">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Interceptor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2022/07/17/15/03/birds-7327611__480.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/24/1%E5%A4%A9%E6%90%9E%E5%AE%9ASpringBoot+Vue%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/Web%E5%BC%80%E5%8F%91/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Ayo","link":"链接: ","source":"来源: 春日迟迟 卉木萋萋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Springboot中的web开发',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-24 18:22:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.pixabay.com/photo/2022/07/17/15/03/birds-7327611__480.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">春日迟迟 卉木萋萋</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Springboot中的web开发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-23T16:00:00.000Z" title="发表于 2022-08-24 00:00:00">2022-08-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-24T10:22:16.506Z" title="更新于 2022-08-24 18:22:16">2022-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Springboot/">Springboot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Springboot中的web开发"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>视频教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nV4y1s7ZN?p=3&amp;vd_source=1656d4f8efefd2dc9cca344e8978b19e">https://www.bilibili.com/video/BV1nV4y1s7ZN?p=3&amp;vd_source=1656d4f8efefd2dc9cca344e8978b19e</a></p>
+<h1 id="1-Web入门"><a href="#1-Web入门" class="headerlink" title="1.Web入门"></a>1.Web入门</h1><h2 id="1-1Web入门"><a href="#1-1Web入门" class="headerlink" title="1.1Web入门"></a>1.1Web入门</h2><ul>
+<li>Spring Boot将传统Web开发的mvc、json、tomcat等框架整合，<strong>提供了spring-boot-starter-web组件</strong>，简化了Web应用配置。</li>
+<li>创建SpringBoot项目<strong>勾选Spring Web</strong>选项后，会自动将spring-boot-starter-web组件加入到项目中。</li>
+<li>spring-boot-starter-web启动器主要包括<strong>web、webmvc、json、tomcat</strong>等基础依赖组件，作用是提供Web开发场景所需的所有底层依赖。</li>
+<li>webmvc为Web开发的基础框架，<strong>json为JSON数据解析组件，tomcat为自带的容器依赖。</strong></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2控制器-Controller和-RestController"><a href="#1-2控制器-Controller和-RestController" class="headerlink" title="1.2控制器@Controller和@RestController"></a>1.2控制器@Controller和@RestController</h2><ul>
+<li>Spring Boot提供了**@Controller和@RestController**两种注解来标识此类负责接收和处理HTTP请求。</li>
+<li>如果<strong>请求的是页面和数据，使用@Controller</strong>注解即可；如果<strong>只是请求数据，则可以使用@RestController注解。</strong></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220824075633917.png" alt="image-20220824075633917"></p>
+<p><strong>@Controller和@RestController区别？</strong></p>
+<h3 id="1-2-1-Controller用法："><a href="#1-2-1-Controller用法：" class="headerlink" title="1.2.1@Controller用法："></a>1.2.1@Controller用法：</h3><ul>
+<li>示例中返回了<strong>hello页面和name</strong>的数据，在前端页面中可以通过**${name}**参数获取后台返回的数据并显示。</li>
+<li><strong>@Controller通常与Thymeleaf</strong>模板引擎结合使用。(这样前后端就不分离了，不提倡)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(ModelMap.map)</span> &#123;</span><br><span class="line">        map.addAtttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> Hello;</span><br><span class="line">        <span class="comment">//这样返回的控制器就必须是一个视图了</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-2RestController的用法："><a href="#1-2-2RestController的用法：" class="headerlink" title="1.2.2RestController的用法："></a>1.2.2RestController的用法：</h3><ul>
+<li>默认情况下，**@RestController注解会将返回的对象数据转换为JSON格式。**(这样方便前端去做一些处理)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getUser</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>;</span><br><span class="line">        user.setUsername(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">        user.setpassword(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>理解：@Controller会返回页面和数据，但页面往往和Thymeleaf模板引擎结合，导致前后端不分离，这不是我们想看到的。所以为了只返回数据，我们用@RestController会更加方便</strong></p>
+<h1 id="2-路由映射"><a href="#2-路由映射" class="headerlink" title="2.路由映射"></a>2.路由映射</h1><h2 id="2-1URL映射"><a href="#2-1URL映射" class="headerlink" title="2.1URL映射"></a>2.1URL映射</h2><ul>
+<li><strong>@RequestMapping注解主要负责URL的路由映射</strong>。它可以添加在Controller类或者具体的方法上。</li>
+<li>如果添加在Controller类上，则这个Controller中的所有路由映射都将会加上此映射规则，如果添加在方法上，则只对当前方法生效。</li>
+</ul>
+<p><strong>理解：添加了@RequestMapping，我们就可以在浏览器上访问我们的页面了。@RequestMapping(“&#x2F;user”)，比如这行代码我们就能在浏览器8080端口的user界面找到</strong></p>
+<p>@RequestMapping注解包含很多属性参数来定义HTTP的请求映射规则。常用的属性参数如下：</p>
+<ul>
+<li><strong>value: 请求URL的路径，支持URL模板、正则表达式</strong></li>
+<li><strong>method: HTTP请求方法</strong></li>
+<li>consumes: 请求的媒体类型（Content-Type），如application&#x2F;json</li>
+<li>produces: 响应的媒体类型</li>
+<li>params，headers: 请求的参数及请求头的值</li>
+</ul>
+<p><strong>理解：一般我们只需要请求的路径和方法就足够了，后面三个不常用。</strong></p>
+<p><strong>此外：value：@RequestMapping(“&#x2F;user”)&#x3D;@RequestMapping(value &#x3D; “&#x2F;user”),但是value常常会省略不写。</strong></p>
+<p><strong>method对应HTTP请求方法，@RequestMapping(value &#x3D; “&#x2F;user”,method &#x3D; RequestMethod.GET)，后面这个就是get方法。（简便的方法）</strong></p>
+<h2 id="2-2路由映射"><a href="#2-2路由映射" class="headerlink" title="2.2路由映射"></a>2.2路由映射</h2><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220824104639521.png" alt="image-20220824104639521"></p>
+<p><strong>理解：一个<em>和两个</em>星号符，对应的分别是任意任意字符和任意路径，这是一个通配符。？也是，常用于传递方式http:localhost:8080&#x2F;hello?username&#x3D;zhangsan，传递了一个zhangsan的值给username</strong></p>
+<p>（星号符不好打，所以用字说明）</p>
+<p>一个星：<a target="_blank" rel="noopener" href="http://localhost:8080/test/xxx(%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D)">http://localhost:8080/test/xxx(任意一个单词)</a></p>
+<p>两个星：<a target="_blank" rel="noopener" href="http://localhost:8080/test/xxx/xxx/xxx(%E5%A4%9A%E4%B8%AA%E8%B7%AF%E5%BE%84%E9%83%BD%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E4%B8%80%E4%B8%AA%E6%98%9F%E4%B8%8D%E8%A1%8C)">http://localhost:8080/test/xxx/xxx/xxx(多个路径都可以，但一个星不行)</a></p>
+<h2 id="2-3Method匹配"><a href="#2-3Method匹配" class="headerlink" title="2.3Method匹配"></a>2.3Method匹配</h2><ul>
+<li>HTTP请求Method有GET、POST、PUT、DELETE等方式。HTTP支持的全部Method</li>
+<li>@RequestMapping注解提供了method参数指定请求的Method类型，包括RequestMethod.GET、RequestMethod.POST、RequestMethod.DELETE、RequestMethod.PUT等值，分别对应HTTP请求的Method</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/user&quot;,method = RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getUser</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> hello;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Method匹配也可以使用@GetMapping、@PostMapping等注解代替。</li>
+</ul>
+<p><strong>理解：这个就是我们常用的http请求的四种方法。GET、POST、PUT、DELETE,同时@RequestMapping(“&#x2F;user”,method &#x3D; RequestMethod.GET) &#x3D; @GetMapping(“&#x2F;user”),因为后面的method方法就对应Get，如果后面是post那就是@PostMapping，同理还有两种也是。</strong></p>
+<h1 id="3-参数传递"><a href="#3-参数传递" class="headerlink" title="3.参数传递"></a>3.参数传递</h1><ul>
+<li><strong>@RequestParam</strong>将请求参数绑定到控制器的方法参数上，接收的参数来自HTTP请求体或请求url的QueryString，当请求的参数名称与Controller的业务方法参数名称一致时,@RequestParam可以省略</li>
+<li><strong>@PathVaraible</strong>：用来处理动态的URL，URL的值可以作为控制器中处理方法的参数</li>
+<li><strong>@RequestBody</strong>接收的参数是来自requestBody中，即请求体。一般用于处理非 Content-Type: application&#x2F;x-www-form-urlencoded编码格式的数据，比如：<code>application/json</code>、<code>application/xml</code>等类型的数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"><span class="comment">//  http://localhost:8080/hello?username=fan</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">(String username)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;你好&quot;</span> + username;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>理解：？传递方式，将fan传给了username，参数就是username，所以hello里的String username就是参数。</strong></p>
+<h2 id="3-1-RequestParam"><a href="#3-1-RequestParam" class="headerlink" title="3.1@RequestParam"></a>3.1@RequestParam</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/test1&quot;)</span></span><br><span class="line"><span class="comment">//  http://localhost:8080/test1?username=fan</span></span><br><span class="line"><span class="comment">//  @RequestParam相当于给name取了一个别名叫username，这样我们也可以使用username来传递值，将URL中参数值传给controller 方法的形参。</span></span><br><span class="line"><span class="comment">//  但是用了@RequestParam，后面这个参数是必须的，不然写它干什么</span></span><br><span class="line"><span class="comment">//  required = false,意味着参数传递不传递都可以，但是必须要写。不传递意味着空。</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test1</span><span class="params">(<span class="meta">@RequestParam(value = &quot;username&quot;,required = false)</span> String name)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Get请求&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>理解：@RequestParam相当于给name取了一个别名叫username，这样我们也可以使用username来传递值，将URL中参数值传给controller 方法的形参。但是用了@RequestParam，后面这个参数是必须的，不然写它干什么，required &#x3D; false,意味者参数传递不传递都可以，但是必须要写。不传递意味着空。</strong></p>
+<h2 id="3-2为什么要创建实体类？"><a href="#3-2为什么要创建实体类？" class="headerlink" title="3.2为什么要创建实体类？"></a>3.2为什么要创建实体类？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/test2&quot;)</span></span><br><span class="line"><span class="comment">//  http://localhost:8080/test2</span></span><br><span class="line"><span class="comment">//定义参数姓名和密码</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test2</span><span class="params">(String name,String password)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Post请求&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果参数特别的多，七八个。比如说一个注册的场景。账号密码手机号等等，全写在括号里显然不方便，java是一个面向对象的语言，那么我们可以把这些参数封装在一个对象里（User）。这些对象在软件工程叫做实体类。但是要保证名称一致。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/test3&quot;)</span></span><br><span class="line"><span class="comment">//  http://localhost:8080/test3</span></span><br><span class="line"><span class="comment">//定义一个类</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test2</span><span class="params">(User user)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Post请求&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>建立一个实体类entity.User类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-3-PathVaraible"><a href="#3-3-PathVaraible" class="headerlink" title="3.3@PathVaraible"></a>3.3@PathVaraible</h2><p>@PathVariable 同 @RequestParam的运行方式不同。你使用 @PathVariable 是为了从 URI 里取到查询参数值。换言之，你使用 @RequestParam 是为了从 URI 模板中获取参数值。@RequestParam 注解配合 @RequestMapping 一起使用，可以将请求的参数同处理方法的参数绑定在一起。<strong>就是从URI获取到参数值。</strong></p>
+<h2 id="3-4-RequestBody"><a href="#3-4-RequestBody" class="headerlink" title="3.4@RequestBody"></a>3.4@RequestBody</h2><p>如果要接受json的数据，就要加这个，才能接收到。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/test3&quot;)</span></span><br><span class="line"><span class="comment">//  http://localhost:8080/test3</span></span><br><span class="line"><span class="comment">//定义一个类</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test2</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Post请求&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如这个json数据：json数据是有引号类型的。<strong>名称和类型都要对应上</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span><span class="string">&quot;zhangsan&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span><span class="string">&quot;123&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="4-静态资源访问"><a href="#4-静态资源访问" class="headerlink" title="4.静态资源访问"></a>4.静态资源访问</h1><ul>
+<li>使用IDEA创建Spring Boot项目，会默认创建出classpath:&#x2F;static&#x2F;目录，静态资源一般放在这个目录下即可。</li>
+<li>如果默认的静态资源过滤策略不能满足开发需求，也可以自定义静态资源过滤策略。</li>
+<li>在application.properties中直接定义过滤规则和静态资源位置：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mvc:</span></span><br><span class="line">    <span class="attr">static-path-pattern:</span> <span class="string">/static/**</span></span><br><span class="line">  <span class="attr">web:</span></span><br><span class="line">    <span class="attr">resources:</span></span><br><span class="line">      <span class="attr">static-locations:</span> <span class="string">classpath:/static/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>过滤规则为&#x2F;static&#x2F;**，静态资源位置为classpath:&#x2F;static&#x2F;</li>
+</ul>
+<p><strong>理解：一般用不到，springboot已经帮我们做过了，静态资源存放到static里面就可以了。除非我们有特定的需求。</strong></p>
+<h1 id="5-文件上传原理"><a href="#5-文件上传原理" class="headerlink" title="5.文件上传原理"></a>5.文件上传原理</h1><ul>
+<li>表单的<strong>enctype</strong> 属性规定在发送到服务器之前应该如何对表单数据进行编码。</li>
+<li>当表单的enctype&#x3D;”application&#x2F;x-www-form-urlencoded”（默认）时，form表单中的数据格式为：key&#x3D;value&amp;key&#x3D;value</li>
+<li>当表单的**enctype&#x3D;”multipart&#x2F;form-data”**时，其传输数据形式如下</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220824155902701.png" alt="image-20220824155902701"></p>
+<p>理解：浏览器暂时接收不了，但是我们可以用第三方工具，比如enctype&#x3D;”multipart&#x2F;form-data”</p>
+<h1 id="6-SpirngBoot实现文件上传功能"><a href="#6-SpirngBoot实现文件上传功能" class="headerlink" title="6.SpirngBoot实现文件上传功能"></a>6.SpirngBoot实现文件上传功能</h1><ul>
+<li>Spring Boot工程嵌入的tomcat限制了请求的文件大小，每个文件的配置最大为1Mb，单次请求的文件的总数不能大于10Mb。</li>
+<li>要更改这个默认值需要在配置文件（如application.properties）中加入两个配置</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220824163502456.png" alt="image-20220824163502456"></p>
+<p><strong>理解：如果文件太大可以加这个配置。不然会有限制。</strong></p>
+<h1 id="7-SpirngBoot实现文件上传功能"><a href="#7-SpirngBoot实现文件上传功能" class="headerlink" title="7.SpirngBoot实现文件上传功能"></a>7.SpirngBoot实现文件上传功能</h1><ul>
+<li>当表单的<strong>enctype&#x3D;”multipart&#x2F;form-data”<strong>时,可以使用</strong>MultipartFile</strong> 获取上传的文件数据，再通过transferTo方法将其写入到磁盘中</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/upload&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">up</span><span class="params">(String nickname, MultipartFile photo, HttpServletRequest request)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    System.out.println(nickname);</span><br><span class="line">    <span class="comment">//获取图片的原始名称</span></span><br><span class="line">    System.out.println(photo.getOriginalFilename());</span><br><span class="line">    <span class="comment">//获取文件类型</span></span><br><span class="line">    System.out.println(photo.getContentType());</span><br><span class="line">    System.out.println(System.getProperty(<span class="string">&quot;user.dir&quot;</span>));</span><br><span class="line">		<span class="comment">//HttpServletRequest request代表的是网络请求，一个request对象，通过这个可以获取上下文对象和路径。</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">path</span> <span class="operator">=</span> request.getServletContext().getRealPath(<span class="string">&quot;/upload&quot;</span>);</span><br><span class="line">    System.out.println(path);</span><br><span class="line">    saveFile(photo,path);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;上传成功&quot;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//saveFile  </span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">saveFile</span><span class="params">(MultipartFile photo, String path)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//判断存储的目录是否存在，如果不存在则创建</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">dir</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path);</span><br><span class="line">        <span class="keyword">if</span> (!dir.exists())&#123;</span><br><span class="line">            <span class="comment">//创建目录</span></span><br><span class="line">            dir.mkdir();</span><br><span class="line">        &#125;</span><br><span class="line">    		<span class="comment">//利用transferTo存储到目录中</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path + photo.getOriginalFilename());</span><br><span class="line">        photo.transferTo(file);</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="8-拦截器"><a href="#8-拦截器" class="headerlink" title="8.拦截器"></a>8.拦截器</h1><ul>
+<li>拦截器在Web系统中非常常见，对于某些全局统一的操作，我们可以把它提取到拦截器中实现。总结起来，拦截器大致有以下几种使用场景：</li>
+<li>权限检查：如登录检测，进入处理程序检测是否登录，如果没有，则直接返回登录页面。</li>
+<li>性能监控：有时系统在某段时间莫名其妙很慢，可以通过拦截器在进入处理程序之前记录开始时间，在处理完后记录结束时间，从而得到该请求的处理时间</li>
+<li>通用行为：读取cookie得到用户信息并将用户对象放入请求，从而方便后续流程使用，还有提取Locale、Theme信息等，只要是多个处理程序都需要的，即可使用拦截器实现。</li>
+</ul>
+<p><strong>理解：拦截请求到，比如后台管理要登录才能进，如果直接进入那肯定是有问题的。</strong></p>
+<ul>
+<li>Spring Boot定义了HandlerInterceptor接口来实现自定义拦截器的功能</li>
+<li><strong>HandlerInterceptor接口</strong>定义了<strong>preHandle</strong>、postHandle、afterCompletion三种方法，通过重写这三种方法实现请求前、请求后等操作</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220824171809835.png" alt="image-20220824171809835"></p>
+<p><strong>preHandle一般用的最多，首先我们要定义一个类，但是一般我们都是新建interceptor包，然后新建一个类以Interceptor结尾，例如：LoginInterceptor</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line">  	<span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response,Object handler)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="keyword">if</span> (条件)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;通过&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;不通过&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> flase;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-1拦截器注册"><a href="#8-1拦截器注册" class="headerlink" title="8.1拦截器注册"></a>8.1拦截器注册</h2><p><strong>拦截器想要使用必须先要注册，这个注册我们在java类里就可以完成了。做一个配置类(config包下)。设置拦截哪些路径。如果不设置路径会拦截所有的请求。</strong></p>
+<ul>
+<li><strong>addPathPatterns方法定义拦截的地址</strong></li>
+<li>excludePathPatterns定义排除某些地址不被拦截</li>
+<li>添加的一个拦截器没有addPathPattern任何一个url则默认拦截所有请求</li>
+<li>如果没有excludePathPatterns任何一个请求，则默认不放过任何一个请求。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInterceptors</span><span class="params">(Interceptors registry)</span>&#123;</span><br><span class="line">        registry.addInterceptors(<span class="keyword">new</span> <span class="title class_">LoginInterceptor</span>()).addPathPatterns(<span class="string">&quot;/user/**&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Springboot/">Springboot</a><a class="post-meta__tags" href="/tags/Controller/">Controller</a><a class="post-meta__tags" href="/tags/Web/">Web</a><a class="post-meta__tags" href="/tags/Interceptor/">Interceptor</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.pixabay.com/photo/2022/07/17/15/03/birds-7327611__480.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/"><img class="next-cover" src="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring注解开发</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/08/06/springboot/Springboot%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/" title="Springboot基础介绍"><img class="cover" src="https://cdn.pixabay.com/photo/2021/05/04/20/57/woman-6229693__340.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-06</div><div class="title">Springboot基础介绍</div></div></a></div><div><a href="/2022/08/07/springboot/Springboot%E4%B8%AD%E7%9A%84yaml%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F/" title="Springboot中的yaml语法格式以及读取数据"><img class="cover" src="https://cdn.pixabay.com/photo/2022/07/19/10/35/puppies-7331739__340.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-07</div><div class="title">Springboot中的yaml语法格式以及读取数据</div></div></a></div><div><a href="/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/" title="基于SpringBoot如何整合三方"><img class="cover" src="https://cdn.pixabay.com/photo/2022/07/10/19/30/house-7313645__340.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-10</div><div class="title">基于SpringBoot如何整合三方</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjY3OC8zMzE0Mg=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ayo</div><div class="author-info__description">coding就是生产力</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FanMiLi666"><i class="fab fa-github"></i><span>codeing中</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FanMiLi666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/FamilyOver?spm=1000.2115.3001.5343" target="_blank" title="csdn"><i class="fas fa-solid fa-c"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">每个优秀的人，都有一段沉默的时光。那段时光，是付出了很多努力，却得不到结果的日子，我们把它叫做扎根！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Web%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">1.Web入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1Web%E5%85%A5%E9%97%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1Web入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E6%8E%A7%E5%88%B6%E5%99%A8-Controller%E5%92%8C-RestController"><span class="toc-number">1.2.</span> <span class="toc-text">1.2控制器@Controller和@RestController</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-Controller%E7%94%A8%E6%B3%95%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1@Controller用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2RestController%E7%9A%84%E7%94%A8%E6%B3%95%EF%BC%9A"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2RestController的用法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%B7%AF%E7%94%B1%E6%98%A0%E5%B0%84"><span class="toc-number">2.</span> <span class="toc-text">2.路由映射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1URL%E6%98%A0%E5%B0%84"><span class="toc-number">2.1.</span> <span class="toc-text">2.1URL映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E8%B7%AF%E7%94%B1%E6%98%A0%E5%B0%84"><span class="toc-number">2.2.</span> <span class="toc-text">2.2路由映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3Method%E5%8C%B9%E9%85%8D"><span class="toc-number">2.3.</span> <span class="toc-text">2.3Method匹配</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-number">3.</span> <span class="toc-text">3.参数传递</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-RequestParam"><span class="toc-number">3.1.</span> <span class="toc-text">3.1@RequestParam</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BD%93%E7%B1%BB%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">3.2为什么要创建实体类？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-PathVaraible"><span class="toc-number">3.3.</span> <span class="toc-text">3.3@PathVaraible</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-RequestBody"><span class="toc-number">3.4.</span> <span class="toc-text">3.4@RequestBody</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE"><span class="toc-number">4.</span> <span class="toc-text">4.静态资源访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8E%9F%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">5.文件上传原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-SpirngBoot%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD"><span class="toc-number">6.</span> <span class="toc-text">6.SpirngBoot实现文件上传功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-SpirngBoot%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD"><span class="toc-number">7.</span> <span class="toc-text">7.SpirngBoot实现文件上传功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">8.</span> <span class="toc-text">8.拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1%E6%8B%A6%E6%88%AA%E5%99%A8%E6%B3%A8%E5%86%8C"><span class="toc-number">8.1.</span> <span class="toc-text">8.1拦截器注册</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/24/1%E5%A4%A9%E6%90%9E%E5%AE%9ASpringBoot+Vue%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/Web%E5%BC%80%E5%8F%91/" title="Springboot中的web开发"><img src="https://cdn.pixabay.com/photo/2022/07/17/15/03/birds-7327611__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Springboot中的web开发"/></a><div class="content"><a class="title" href="/2022/08/24/1%E5%A4%A9%E6%90%9E%E5%AE%9ASpringBoot+Vue%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/Web%E5%BC%80%E5%8F%91/" title="Springboot中的web开发">Springboot中的web开发</a><time datetime="2022-08-23T16:00:00.000Z" title="发表于 2022-08-24 00:00:00">2022-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" title="Spring注解开发"><img src="https://cdn.pixabay.com/photo/2022/02/03/19/07/egret-6991142__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring注解开发"/></a><div class="content"><a class="title" href="/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" title="Spring注解开发">Spring注解开发</a><time datetime="2022-08-11T16:00:00.000Z" title="发表于 2022-08-12 00:00:00">2022-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/" title="Spring中DI以及核心容器相关"><img src="https://cdn.pixabay.com/photo/2022/07/22/19/42/marmot-7338831__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring中DI以及核心容器相关"/></a><div class="content"><a class="title" href="/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/" title="Spring中DI以及核心容器相关">Spring中DI以及核心容器相关</a><time datetime="2022-08-10T16:00:00.000Z" title="发表于 2022-08-11 00:00:00">2022-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/" title="Spring框架的主要内容"><img src="https://cdn.pixabay.com/photo/2022/07/25/16/41/child-7344169__480.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring框架的主要内容"/></a><div class="content"><a class="title" href="/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/" title="Spring框架的主要内容">Spring框架的主要内容</a><time datetime="2022-08-09T16:00:00.000Z" title="发表于 2022-08-10 00:00:00">2022-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/" title="基于SpringBoot如何整合三方"><img src="https://cdn.pixabay.com/photo/2022/07/10/19/30/house-7313645__340.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于SpringBoot如何整合三方"/></a><div class="content"><a class="title" href="/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/" title="基于SpringBoot如何整合三方">基于SpringBoot如何整合三方</a><time datetime="2022-08-09T16:00:00.000Z" title="发表于 2022-08-10 00:00:00">2022-08-10</time></div></div></div></div></div></div></main><footer id="footer" style="background: fales"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Ayo</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">很高兴认识你😄</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

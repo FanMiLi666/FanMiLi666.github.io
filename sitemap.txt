@@ -1,3 +1,4 @@
+http://example.com/2022/08/24/1%E5%A4%A9%E6%90%9E%E5%AE%9ASpringBoot+Vue%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/Web%E5%BC%80%E5%8F%91/
 http://example.com/2022/08/10/spring/Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9/
 http://example.com/2022/08/12/spring/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/
 http://example.com/2022/08/11/spring/Spring%E4%B8%ADDI%E4%BB%A5%E5%8F%8A%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3md/
@@ -49,6 +50,9 @@ http://example.com/tags/JUnit/
 http://example.com/tags/MyBatis/
 http://example.com/tags/MyBatis-Plus/
 http://example.com/tags/Druid/
+http://example.com/tags/Controller/
+http://example.com/tags/Web/
+http://example.com/tags/Interceptor/
 http://example.com/categories/Java/
 http://example.com/categories/Maven/
 http://example.com/categories/Spring/
