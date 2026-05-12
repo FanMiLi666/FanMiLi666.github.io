@@ -5902,15 +5902,21 @@ blockquote.pullquote.right {
   }
 }
 
-/* --- 强制隐藏来必力(LiveRe)评论区及附属 Taboola 广告 --- */
+/* --- 终极清理：强制隐藏所有评论插件及附属广告 --- */
 #post-comment, 
 #lv-container, 
 #taboola-livere,
-[id^="taboola-"],
-.lv-container { 
+.lv-container,
+div[class*="taboola"], 
+div[id*="taboola"],
+div[data-ad-provider],
+.trc_related_container,
+#sponsored-links { 
     display: none !important; 
     visibility: hidden !important;
     height: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
