@@ -5901,3 +5901,16 @@ blockquote.pullquote.right {
     max-height: 75vh !important;
   }
 }
+
+/* --- 强制隐藏来必力(LiveRe)评论区及附属 Taboola 广告 --- */
+#post-comment, 
+#lv-container, 
+#taboola-livere,
+[id^="taboola-"],
+.lv-container { 
+    display: none !important; 
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
