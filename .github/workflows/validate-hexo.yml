@@ -1,0 +1,32 @@
+name: Validate Hexo source
+
+on:
+  push:
+    paths:
+      - 'blog-source/**'
+      - '.github/workflows/validate-hexo.yml'
+  pull_request:
+    paths:
+      - 'blog-source/**'
+      - '.github/workflows/validate-hexo.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: blog-source
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: blog-source/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: npm --prefix themes/butterfly ci --omit=optional --no-audit --no-fund
+      - run: pnpm exec hexo clean && pnpm exec hexo generate
+      - run: test -s public/2026/09/09/spring-boot-blog-restart/index.html
