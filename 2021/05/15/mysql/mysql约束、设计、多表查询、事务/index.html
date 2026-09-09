@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Mysql约束、设计、多表查询、事务 | 春日迟迟 卉木萋萋</title><meta name="keywords" content="MySql"><meta name="author" content="Ayo"><meta name="copyright" content="Ayo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据库的多表查询、显式内连接、左外连接等。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql约束、设计、多表查询、事务">
-<meta property="og:url" content="http://example.com/2021/05/15/mysql/mysql%E7%BA%A6%E6%9D%9F%E3%80%81%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E4%BA%8B%E5%8A%A1/index.html">
+<meta property="og:url" content="https://fanmili666.github.io/2021/05/15/mysql/mysql%E7%BA%A6%E6%9D%9F%E3%80%81%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E4%BA%8B%E5%8A%A1/index.html">
 <meta property="og:site_name" content="春日迟迟 卉木萋萋">
 <meta property="og:description" content="数据库的多表查询、显式内连接、左外连接等。">
 <meta property="og:locale" content="zh_CN">
@@ -11,7 +11,7 @@
 <meta property="article:author" content="Ayo">
 <meta property="article:tag" content="MySql">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2022/05/03/20/09/prague-7172594__480.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/05/15/mysql/mysql%E7%BA%A6%E6%9D%9F%E3%80%81%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E4%BA%8B%E5%8A%A1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2022/05/03/20/09/prague-7172594__480.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://fanmili666.github.io/2021/05/15/mysql/mysql%E7%BA%A6%E6%9D%9F%E3%80%81%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E4%BA%8B%E5%8A%A1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
@@ -95,7 +95,7 @@
         return item.value
       }
     }
-  
+
     win.getScript = url => new Promise((resolve, reject) => {
       const script = document.createElement('script')
       script.src = url
@@ -109,7 +109,7 @@
       }
       document.head.appendChild(script)
     })
-  
+
       win.activateDarkMode = function () {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
@@ -123,10 +123,10 @@
         }
       }
       const t = saveToLocal.get('theme')
-    
+
           if (t === 'dark') activateDarkMode()
           else if (t === 'light') activateLightMode()
-        
+
       const asideStatus = saveToLocal.get('aside-status')
       if (asideStatus !== undefined) {
         if (asideStatus === 'hide') {
@@ -135,7 +135,7 @@
           document.documentElement.classList.remove('hide-aside')
         }
       }
-    
+
     const detectApple = () => {
       if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
         document.documentElement.classList.add('apple')
@@ -462,13 +462,13 @@ var pjax = new Pjax({
 
 document.addEventListener('pjax:send', function () {
 
-  // removeEventListener scroll 
+  // removeEventListener scroll
   window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
   window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
 
   typeof preloader === 'object' && preloader.initLoading()
   document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
-  
+
   if (window.aplayers) {
     for (let i = 0; i < window.aplayers.length; i++) {
       if (!window.aplayers[i].options.fixed) {

@@ -775,4 +775,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   refreshFn()
   unRefreshFn()
+
+  // 静态站点补充的新文章：首页发布时自动置顶，避免手动修改压缩后的页面结构。
+  if (GLOBAL_CONFIG_SITE.isHome) {
+    const posts = document.querySelector('#recent-posts')
+    if (posts && !document.querySelector('[data-post="spring-boot-blog-restart"]')) {
+      const item = document.createElement('div')
+      item.className = 'recent-post-item'
+      item.dataset.post = 'spring-boot-blog-restart'
+      item.innerHTML = '<div class="post_cover left"><a href="/2026/09/09/spring-boot-blog-restart/" title="重新开始维护博客：Spring Boot 项目的最小工程化清单"><img class="post_bg" src="/img/bg.jpeg" alt="Spring Boot 项目的最小工程化清单"></a></div><div class="recent-post-info"><a class="article-title" href="/2026/09/09/spring-boot-blog-restart/" title="重新开始维护博客：Spring Boot 项目的最小工程化清单">重新开始维护博客：Spring Boot 项目的最小工程化清单</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-09-09">2026-09-09</time></span></div><div class="content">从可运行、可验证、可部署三个角度，整理一个 Spring Boot 项目的最小工程化清单。</div></div>'
+      posts.prepend(item)
+    }
+  }
 })

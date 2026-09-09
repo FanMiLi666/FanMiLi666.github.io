@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>基于SpringBoot如何整合三方 | 春日迟迟 卉木萋萋</title><meta name="keywords" content="Springboot,JUnit,MyBatis,MyBatis-Plus,Druid"><meta name="author" content="Ayo"><meta name="copyright" content="Ayo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Springboot整合JUnit、MyBatis、MyBatis-Plus、Druid等其他任何技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于SpringBoot如何整合三方">
-<meta property="og:url" content="http://example.com/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/index.html">
+<meta property="og:url" content="https://fanmili666.github.io/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/index.html">
 <meta property="og:site_name" content="春日迟迟 卉木萋萋">
 <meta property="og:description" content="Springboot整合JUnit、MyBatis、MyBatis-Plus、Druid等其他任何技术">
 <meta property="og:locale" content="zh_CN">
@@ -15,7 +15,7 @@
 <meta property="article:tag" content="MyBatis-Plus">
 <meta property="article:tag" content="Druid">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2022/07/10/19/30/house-7313645__340.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2022/07/10/19/30/house-7313645__340.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://fanmili666.github.io/2022/08/10/springboot/%E5%9F%BA%E4%BA%8ESpringBoot%E5%A6%82%E4%BD%95%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
@@ -99,7 +99,7 @@
         return item.value
       }
     }
-  
+
     win.getScript = url => new Promise((resolve, reject) => {
       const script = document.createElement('script')
       script.src = url
@@ -113,7 +113,7 @@
       }
       document.head.appendChild(script)
     })
-  
+
       win.activateDarkMode = function () {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
@@ -127,10 +127,10 @@
         }
       }
       const t = saveToLocal.get('theme')
-    
+
           if (t === 'dark') activateDarkMode()
           else if (t === 'light') activateLightMode()
-        
+
       const asideStatus = saveToLocal.get('aside-status')
       if (asideStatus !== undefined) {
         if (asideStatus === 'hide') {
@@ -139,7 +139,7 @@
           document.documentElement.classList.remove('hide-aside')
         }
       }
-    
+
     const detectApple = () => {
       if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
         document.documentElement.classList.add('apple')
@@ -366,13 +366,13 @@ var pjax = new Pjax({
 
 document.addEventListener('pjax:send', function () {
 
-  // removeEventListener scroll 
+  // removeEventListener scroll
   window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
   window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
 
   typeof preloader === 'object' && preloader.initLoading()
   document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
-  
+
   if (window.aplayers) {
     for (let i = 0; i < window.aplayers.length; i++) {
       if (!window.aplayers[i].options.fixed) {
