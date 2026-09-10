@@ -161,12 +161,12 @@
 <li>可随时替换底层数据库，访问数据库的Java代码基本不变</li>
 </ul>
 <p>以后编写操作数据库的代码只需要面向<strong>JDBC</strong>（接口），操作哪儿个关系型数据库就需要导入该数据库的驱动包，如需要操作MySQL数据库，就需要再项目中导入MySQL数据库的驱动包。如下图就是MySQL驱动包**(jar包)**</p>
-<img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20210725133015535.png" alt="image-20210725133015535" style="zoom:90%;" />
+<img src="/img/articles/image-20210725133015535.png" alt="image-20210725133015535" style="zoom:90%;" />
 
 <h1 id="2-JDBC快速入门"><a href="#2-JDBC快速入门" class="headerlink" title="2.JDBC快速入门"></a>2.JDBC快速入门</h1><p><img src="https://cdn.jsdelivr.net/gh/FanMiLi666/picgo/img/image-20220718161202408.png" alt="image-20220718161202408"></p>
 <h2 id="2-1编写代码步骤"><a href="#2-1编写代码步骤" class="headerlink" title="2.1编写代码步骤"></a>2.1编写代码步骤</h2><ul>
 <li><p>创建工程，导入驱动jar包</p>
-<img src="/Users/fanshiwei/Desktop/资料-javaweb全/day03-JDBC/ppt/assets/image-20210725133015535.png" alt="image-20210725133015535" style="zoom:90%;" />
+<img src="/img/articles/image-20210725133015535.png" alt="image-20210725133015535" style="zoom:90%;" />
 </li>
 <li><p>注册驱动</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br></pre></td></tr></table></figure>

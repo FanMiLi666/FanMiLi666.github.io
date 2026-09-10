@@ -30,3 +30,4 @@ jobs:
       - run: npm --prefix themes/butterfly ci --omit=optional --no-audit --no-fund
       - run: pnpm exec hexo clean && pnpm exec hexo generate
       - run: test -s public/2026/09/09/spring-boot-blog-restart/index.html
+      - run: node tools/validate-images.mjs

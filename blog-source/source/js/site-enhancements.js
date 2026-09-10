@@ -58,6 +58,15 @@
     enhancePost()
   }
 
+  document.addEventListener('error', event => {
+    const image = event.target
+    if (!(image instanceof HTMLImageElement) || image.dataset.imageFallback) return
+    image.dataset.imageFallback = 'true'
+    image.classList.add('image-fallback')
+    image.alt = image.alt || '图片加载失败'
+    image.src = '/img/image-unavailable.svg'
+  }, true)
+
   document.addEventListener('DOMContentLoaded', run)
   document.addEventListener('pjax:complete', run)
 })()

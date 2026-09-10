@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title description">
+  <title id="title">原始截图暂时不可用</title>
+  <desc id="description">原图托管地址已失效，等待重新补档。</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#e0e7ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#background)"/>
+  <rect x="120" y="110" width="720" height="320" rx="28" fill="#fff" stroke="#bfdbfe" stroke-width="3"/>
+  <path d="M425 245h110m-55-55v110" stroke="#2563eb" stroke-width="12" stroke-linecap="round"/>
+  <text x="480" y="335" text-anchor="middle" fill="#1e3a8a" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="28" font-weight="600">原始截图暂时不可用</text>
+  <text x="480" y="375" text-anchor="middle" fill="#64748b" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="19">图片托管地址已失效，正在整理补档</text>
+</svg>
