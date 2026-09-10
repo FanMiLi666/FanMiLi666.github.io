@@ -174,6 +174,16 @@
     })
   }
 
+  const updateSiteRuntime = () => {
+    const runtime = document.querySelector('#site-runtime')
+    if (!runtime) return
+    const startedAt = new Date('2020-01-01T00:00:00+08:00')
+    const elapsedDays = Math.max(0, Math.floor((Date.now() - startedAt.getTime()) / DAY))
+    const years = Math.floor(elapsedDays / 365)
+    const days = elapsedDays % 365
+    runtime.textContent = `${years} 年 ${days} 天`
+  }
+
   const addReadingResume = () => {
     const article = document.querySelector('#article-container')
     if (!article || !document.querySelector('#post-info') || article.querySelector('[data-reading-resume]')) return
@@ -264,6 +274,7 @@
     addReadingResume()
     addReadingProgress()
     renderBookmarks()
+    updateSiteRuntime()
   }
 
   document.addEventListener('error', event => {
