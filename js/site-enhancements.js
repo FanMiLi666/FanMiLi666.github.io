@@ -2,6 +2,8 @@
   const DAY = 24 * 60 * 60 * 1000
   const BOOKMARK_KEY = 'fanmili-blog-bookmarks'
   const FONT_SIZE_KEY = 'fanmili-blog-font-size'
+  const READING_PROGRESS_KEY = 'fanmili-blog-reading-progress'
+  let lastReadingProgressSave = 0
 
   const getBookmarks = () => {
     try {
@@ -13,6 +15,17 @@
   }
 
   const saveBookmarks = bookmarks => localStorage.setItem(BOOKMARK_KEY, JSON.stringify(bookmarks))
+
+  const getReadingProgress = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(READING_PROGRESS_KEY) || '{}')
+      return saved && typeof saved === 'object' ? saved : {}
+    } catch {
+      return {}
+    }
+  }
+
+  const saveReadingProgress = progress => localStorage.setItem(READING_PROGRESS_KEY, JSON.stringify(progress))
 
   const addSiteNav = () => {
     const menu = document.querySelector('#menus .menus_items')
@@ -161,6 +174,25 @@
     })
   }
 
+  const addReadingResume = () => {
+    const article = document.querySelector('#article-container')
+    if (!article || !document.querySelector('#post-info') || article.querySelector('[data-reading-resume]')) return
+    const saved = getReadingProgress()[window.location.pathname]
+    if (!saved || saved.percentage < 5 || saved.percentage >= 96) return
+
+    const notice = document.createElement('aside')
+    notice.className = 'reading-resume-notice'
+    notice.dataset.readingResume = 'true'
+    notice.innerHTML = `<span><i class="fas fa-history"></i> 上次读到约 ${Math.round(saved.percentage)}%</span><button type="button">继续阅读</button>`
+    notice.querySelector('button').addEventListener('click', () => {
+      const articleTop = article.getBoundingClientRect().top + window.scrollY
+      const readableHeight = Math.max(1, article.offsetHeight - window.innerHeight * 0.38)
+      window.scrollTo({ top: articleTop + readableHeight * (saved.percentage / 100) - window.innerHeight * 0.38, behavior: 'smooth' })
+      notice.remove()
+    })
+    article.prepend(notice)
+  }
+
   const addRandomPost = () => {
     if (!document.body.classList.contains('is-home') && !document.querySelector('#site-info')) return
     const siteInfo = document.querySelector('#site-info')
@@ -196,6 +228,16 @@
     const readableHeight = Math.max(1, article.offsetHeight - window.innerHeight * 0.38)
     const percentage = Math.min(100, Math.max(0, ((window.scrollY - articleTop + window.innerHeight * 0.38) / readableHeight) * 100))
     progress.style.transform = `scaleX(${percentage / 100})`
+    if (document.querySelector('#post-info') && Date.now() - lastReadingProgressSave > 1000) {
+      const saved = getReadingProgress()
+      if (percentage >= 96) {
+        delete saved[window.location.pathname]
+      } else {
+        saved[window.location.pathname] = { percentage, savedAt: Date.now() }
+      }
+      saveReadingProgress(saved)
+      lastReadingProgressSave = Date.now()
+    }
   }
 
   const addReadingProgress = () => {
@@ -219,6 +261,7 @@
     addSiteNav()
     enhancePost()
     addRandomPost()
+    addReadingResume()
     addReadingProgress()
     renderBookmarks()
   }

@@ -464,3 +464,32 @@
 .bookmark-empty {
     color: var(--site-muted);
 }
+
+.reading-resume-notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    margin: 0 0 1.35rem;
+    padding: 0.72rem 0.9rem;
+    color: var(--site-accent-strong);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 10px;
+    background: rgba(219, 234, 254, 0.58);
+    font-size: 0.9rem;
+}
+
+.reading-resume-notice button {
+    flex: none;
+    padding: 0.36rem 0.65rem;
+    color: #fff;
+    border: 0;
+    border-radius: 7px;
+    background: var(--site-accent);
+    font: inherit;
+    cursor: pointer;
+}
+
+[data-theme='dark'] .reading-resume-notice {
+    background: rgba(30, 64, 175, 0.23);
+}
