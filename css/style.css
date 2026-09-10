@@ -374,3 +374,18 @@
     opacity: 0.75;
     transform: none;
 }
+
+.reading-progress {
+    position: fixed;
+    z-index: 10001;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--site-accent), #38bdf8, #a78bfa);
+    box-shadow: 0 1px 8px rgba(14, 165, 233, 0.5);
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.08s linear;
+}

@@ -88,10 +88,38 @@
     siteInfo.append(button)
   }
 
+  const updateReadingProgress = () => {
+    const progress = document.querySelector('[data-reading-progress]')
+    const article = document.querySelector('#article-container')
+    if (!progress || !article) return
+    const articleTop = article.getBoundingClientRect().top + window.scrollY
+    const readableHeight = Math.max(1, article.offsetHeight - window.innerHeight * 0.38)
+    const percentage = Math.min(100, Math.max(0, ((window.scrollY - articleTop + window.innerHeight * 0.38) / readableHeight) * 100))
+    progress.style.transform = `scaleX(${percentage / 100})`
+  }
+
+  const addReadingProgress = () => {
+    const article = document.querySelector('#article-container')
+    const current = document.querySelector('[data-reading-progress]')
+    if (!article) {
+      if (current) current.remove()
+      return
+    }
+    if (!current) {
+      const progress = document.createElement('div')
+      progress.className = 'reading-progress'
+      progress.dataset.readingProgress = 'true'
+      progress.setAttribute('aria-hidden', 'true')
+      document.body.append(progress)
+    }
+    updateReadingProgress()
+  }
+
   const run = () => {
     addSiteNav()
     enhancePost()
     addRandomPost()
+    addReadingProgress()
   }
 
   document.addEventListener('error', event => {
@@ -105,4 +133,6 @@
 
   document.addEventListener('DOMContentLoaded', run)
   document.addEventListener('pjax:complete', run)
+  window.addEventListener('scroll', updateReadingProgress, { passive: true })
+  window.addEventListener('resize', updateReadingProgress, { passive: true })
 })()
