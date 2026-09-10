@@ -202,3 +202,107 @@
     }
 }
 
+/* Content tools */
+.post-freshness-notice {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-start;
+    margin: 0 0 1.75rem;
+    padding: 0.9rem 1rem;
+    color: #7c4a03;
+    border: 1px solid rgba(245, 158, 11, 0.32);
+    border-radius: 12px;
+    background: rgba(254, 243, 199, 0.65);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.post-freshness-notice i {
+    margin-top: 0.25rem;
+    color: #d97706;
+}
+
+.post-meta-readtime {
+    margin-left: 0.7rem;
+}
+
+.copy-link-button {
+    padding: 0.42rem 0.78rem;
+    color: var(--site-accent-strong);
+    border: 1px solid rgba(37, 99, 235, 0.26);
+    border-radius: 9px;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.copy-link-button:hover {
+    color: #fff;
+    background: var(--site-accent);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.75rem 0 2.5rem;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 205px;
+    padding: 1.4rem;
+    color: var(--site-ink) !important;
+    border: 1px solid var(--site-border);
+    border-radius: 16px;
+    background: linear-gradient(145deg, var(--site-surface), rgba(219, 234, 254, 0.55));
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    text-decoration: none !important;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 36px rgba(15, 23, 42, 0.13);
+}
+
+.project-card h2 {
+    margin: 0.55rem 0;
+    border: 0 !important;
+}
+
+.project-card p {
+    margin: 0;
+    color: var(--site-muted);
+}
+
+.project-card__eyebrow {
+    color: var(--site-accent-strong);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.project-card__link {
+    margin-top: auto;
+    padding-top: 1.2rem;
+    color: var(--site-accent-strong);
+    font-weight: 600;
+}
+
+[data-theme='dark'] .post-freshness-notice {
+    color: #fde68a;
+    background: rgba(120, 53, 15, 0.26);
+}
+
+[data-theme='dark'] .project-card {
+    background: linear-gradient(145deg, var(--site-surface), rgba(30, 58, 138, 0.22));
+}
+
+@media screen and (max-width: 900px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+}
