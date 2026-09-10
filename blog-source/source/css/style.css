@@ -403,6 +403,31 @@
     cursor: pointer;
 }
 
+.font-size-controls {
+    display: inline-flex;
+    gap: 0.3rem;
+    margin-left: 0.55rem;
+    vertical-align: middle;
+}
+
+.font-size-controls button {
+    min-width: 2.1rem;
+    padding: 0.38rem 0.48rem;
+    color: var(--site-accent-strong);
+    border: 1px solid var(--site-border);
+    border-radius: 8px;
+    background: var(--site-surface);
+    font: inherit;
+    font-size: 0.86rem;
+    cursor: pointer;
+}
+
+.font-size-controls button:hover {
+    color: #fff;
+    border-color: var(--site-accent);
+    background: var(--site-accent);
+}
+
 .bookmark-post-button:hover,
 .bookmark-post-button.is-saved {
     color: #fff;

@@ -1,6 +1,7 @@
 (() => {
   const DAY = 24 * 60 * 60 * 1000
   const BOOKMARK_KEY = 'fanmili-blog-bookmarks'
+  const FONT_SIZE_KEY = 'fanmili-blog-font-size'
 
   const getBookmarks = () => {
     try {
@@ -100,6 +101,38 @@
       })
       refreshBookmark()
       share.append(bookmark)
+    }
+
+    if (share && document.querySelector('#post-info') && !share.querySelector('[data-font-size-controls]')) {
+      const controls = document.createElement('span')
+      controls.className = 'font-size-controls'
+      controls.dataset.fontSizeControls = 'true'
+      const getSize = () => Number(localStorage.getItem(FONT_SIZE_KEY) || 0)
+      const applySize = size => {
+        if (size) {
+          article.style.fontSize = `${size}px`
+          localStorage.setItem(FONT_SIZE_KEY, String(size))
+        } else {
+          article.style.removeProperty('font-size')
+          localStorage.removeItem(FONT_SIZE_KEY)
+        }
+      }
+      const savedSize = getSize()
+      if (savedSize >= 15 && savedSize <= 22) applySize(savedSize)
+      controls.innerHTML = [
+        '<button type="button" title="缩小正文字号" data-font-size="-1">A−</button>',
+        '<button type="button" title="恢复默认字号" data-font-size="0">A</button>',
+        '<button type="button" title="放大正文字号" data-font-size="1">A＋</button>'
+      ].join('')
+      controls.addEventListener('click', event => {
+        const action = event.target.closest('[data-font-size]')
+        if (!action) return
+        const delta = Number(action.dataset.fontSize)
+        if (!delta) return applySize(0)
+        const nextSize = Math.min(22, Math.max(15, (getSize() || 18) + delta))
+        applySize(nextSize)
+      })
+      share.append(controls)
     }
   }
 
