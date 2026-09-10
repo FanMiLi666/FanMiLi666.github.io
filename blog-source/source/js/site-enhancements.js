@@ -1,5 +1,17 @@
 (() => {
   const DAY = 24 * 60 * 60 * 1000
+  const BOOKMARK_KEY = 'fanmili-blog-bookmarks'
+
+  const getBookmarks = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(BOOKMARK_KEY) || '[]')
+      return Array.isArray(saved) ? saved : []
+    } catch {
+      return []
+    }
+  }
+
+  const saveBookmarks = bookmarks => localStorage.setItem(BOOKMARK_KEY, JSON.stringify(bookmarks))
 
   const addSiteNav = () => {
     const menu = document.querySelector('#menus .menus_items')
@@ -7,7 +19,8 @@
 
     const entries = [
       { href: '/guide/', icon: 'fas fa-map-signs fa-fw', label: '指南' },
-      { href: '/projects/', icon: 'fas fa-rocket fa-fw', label: '项目' }
+      { href: '/projects/', icon: 'fas fa-rocket fa-fw', label: '项目' },
+      { href: '/bookmarks/', icon: 'fas fa-bookmark fa-fw', label: '收藏' }
     ]
 
     for (const entry of entries) {
@@ -59,6 +72,60 @@
       })
       share.append(copy)
     }
+
+    if (share && !share.querySelector('[data-bookmark-post]')) {
+      const bookmark = document.createElement('button')
+      const path = window.location.pathname
+      const title = document.querySelector('#article-container h1, #post h1')?.textContent.trim() || document.title
+      const refreshBookmark = () => {
+        const saved = getBookmarks().some(item => item.path === path)
+        bookmark.classList.toggle('is-saved', saved)
+        bookmark.innerHTML = saved
+          ? '<i class="fas fa-bookmark"></i> 已收藏'
+          : '<i class="far fa-bookmark"></i> 收藏文章'
+      }
+      bookmark.type = 'button'
+      bookmark.className = 'bookmark-post-button'
+      bookmark.dataset.bookmarkPost = 'true'
+      bookmark.addEventListener('click', () => {
+        const bookmarks = getBookmarks()
+        const existing = bookmarks.findIndex(item => item.path === path)
+        if (existing >= 0) {
+          bookmarks.splice(existing, 1)
+        } else {
+          bookmarks.unshift({ path, title, savedAt: Date.now() })
+        }
+        saveBookmarks(bookmarks.slice(0, 100))
+        refreshBookmark()
+      })
+      refreshBookmark()
+      share.append(bookmark)
+    }
+  }
+
+  const renderBookmarks = () => {
+    const list = document.querySelector('[data-bookmark-list]')
+    if (!list) return
+    const bookmarks = getBookmarks()
+    list.replaceChildren()
+    if (!bookmarks.length) {
+      const empty = document.createElement('p')
+      empty.className = 'bookmark-empty'
+      empty.textContent = '还没有收藏。打开一篇文章，点击“收藏文章”即可把它放到这里。'
+      list.append(empty)
+      return
+    }
+    bookmarks.forEach(item => {
+      const card = document.createElement('a')
+      card.className = 'bookmark-card'
+      card.href = item.path
+      const label = document.createElement('span')
+      label.textContent = item.title || item.path
+      const meta = document.createElement('small')
+      meta.textContent = `收藏于 ${new Date(item.savedAt).toLocaleDateString('zh-CN')}`
+      card.append(label, meta)
+      list.append(card)
+    })
   }
 
   const addRandomPost = () => {
@@ -120,6 +187,7 @@
     enhancePost()
     addRandomPost()
     addReadingProgress()
+    renderBookmarks()
   }
 
   document.addEventListener('error', event => {
