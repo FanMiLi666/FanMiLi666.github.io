@@ -1,15 +1,23 @@
 (() => {
   const DAY = 24 * 60 * 60 * 1000
 
-  const addProjectsNav = () => {
+  const addSiteNav = () => {
     const menu = document.querySelector('#menus .menus_items')
-    if (!menu || menu.querySelector('[data-site-projects]')) return
+    if (!menu) return
 
-    const item = document.createElement('div')
-    item.className = 'menus_item'
-    item.dataset.siteProjects = 'true'
-    item.innerHTML = '<a class="site-page" href="/projects/"><i class="fas fa-rocket fa-fw"></i><span> 项目</span></a>'
-    menu.append(item)
+    const entries = [
+      { href: '/guide/', icon: 'fas fa-map-signs fa-fw', label: '指南' },
+      { href: '/projects/', icon: 'fas fa-rocket fa-fw', label: '项目' }
+    ]
+
+    for (const entry of entries) {
+      if (menu.querySelector(`a[href="${entry.href}"]`)) continue
+      const item = document.createElement('div')
+      item.className = 'menus_item'
+      item.dataset.siteNavigation = entry.label
+      item.innerHTML = `<a class="site-page" href="${entry.href}"><i class="${entry.icon}"></i><span> ${entry.label}</span></a>`
+      menu.append(item)
+    }
   }
 
   const enhancePost = () => {
@@ -54,7 +62,7 @@
   }
 
   const run = () => {
-    addProjectsNav()
+    addSiteNav()
     enhancePost()
   }
 
