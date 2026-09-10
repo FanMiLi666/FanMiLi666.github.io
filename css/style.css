@@ -349,3 +349,28 @@
 .learning-path__stage a {
     font-weight: 650;
 }
+
+.random-post-button {
+    margin-top: 1.35rem;
+    padding: 0.62rem 1rem;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.28);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+    font: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.random-post-button:hover {
+    border-color: var(--site-accent);
+    background: var(--site-accent);
+    transform: translateY(-2px);
+}
+
+.random-post-button:disabled {
+    cursor: wait;
+    opacity: 0.75;
+    transform: none;
+}

@@ -61,9 +61,37 @@
     }
   }
 
+  const addRandomPost = () => {
+    if (!document.body.classList.contains('is-home') && !document.querySelector('#site-info')) return
+    const siteInfo = document.querySelector('#site-info')
+    if (!siteInfo || siteInfo.querySelector('[data-random-post]')) return
+
+    const button = document.createElement('button')
+    button.type = 'button'
+    button.className = 'random-post-button'
+    button.dataset.randomPost = 'true'
+    button.innerHTML = '<i class="fas fa-dice"></i> 随机读一篇'
+    button.addEventListener('click', async () => {
+      button.disabled = true
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 正在挑选'
+      try {
+        const sitemap = await fetch('/sitemap.xml').then(response => response.text())
+        const links = [...sitemap.matchAll(/<loc>(https?:\/\/[^<]+)<\/loc>/g)]
+          .map(match => new URL(match[1]).pathname)
+          .filter(pathname => /^\/20\d{2}\//.test(pathname))
+        if (!links.length) throw new Error('empty sitemap')
+        window.location.assign(links[Math.floor(Math.random() * links.length)])
+      } catch {
+        window.location.assign('/archives/')
+      }
+    })
+    siteInfo.append(button)
+  }
+
   const run = () => {
     addSiteNav()
     enhancePost()
+    addRandomPost()
   }
 
   document.addEventListener('error', event => {
